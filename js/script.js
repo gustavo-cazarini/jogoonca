@@ -1,4 +1,5 @@
-fetch('../htmlparts/pg_cad_login.html').then(function (response) {
+const index = () => {
+    fetch('../htmlparts/pg_cad_login.html').then(function (response) {
 	// The API call was successful!
 	return response.text();
 }).then(function (html) {
@@ -6,21 +7,12 @@ fetch('../htmlparts/pg_cad_login.html').then(function (response) {
     content.innerHTML = html;
     let btn = document.getElementById("btn-vj");
     btn.addEventListener("click", () => {
-        tela02();
-    });
-}).catch(function (err) {
-	// There was an error
-	console.warn('Something went wrong.', err);
-});
-
-function tela02() {
-    fetch('../cadastro_login.html').then(function (response) {
-        return response.text();
-    }).then((html) => {
+        let div = document.querySelector('.d-none');
+        div.classList.remove('d-none');
+        btn.classList.add('d-none');
         if(!imgLogo.classList.contains('resize-img')) {
             imgLogo.classList.add("resize-img");
         }
-        content.innerHTML = html;
 
         let btnCad = document.getElementById("btn-cadastrese");
         btnCad.addEventListener("click", () => {
@@ -31,19 +23,33 @@ function tela02() {
         btnLog.addEventListener("click", () => {
             telaLogin();
         });
-    }).catch((err) => {
-        console.warn('Algo deu errado!', err);
     });
+}).catch(function (err) {
+	console.warn('Algo deu errado.', err);
+});
 }
 
+index();
+
 function telaCadastro() {
-    fetch('../cadastro.html').then((response) => {
+    fetch('../htmlparts/cadastro.html').then((response) => {
         return response.text();
     }).then((html) => {
         content.innerHTML = html;
-        let btnVoltar = document.getElementById("btn-voltar");
+        let btnVoltar = document.querySelector("#btn-voltar");
+        let btnCad = document.querySelector('#btn-cad');
         btnVoltar.addEventListener("click", () => {
-            tela02();
+            index();
+        });
+        btnCad.addEventListener("click", () => {
+            // Lógica do cadastro
+            
+            /*
+                CHECKLIST
+                 - api post
+                 - alertar sucesso solicitando o login
+                 - redirecionar para index
+            */
         })
     }).catch((err) => {
         console.warn('Algo deu errado!', err);
@@ -51,14 +57,30 @@ function telaCadastro() {
 }
 
 function telaLogin() {
-    fetch('../login.html').then((response) => {
+    fetch('../htmlparts/login.html').then((response) => {
         return response.text();
     }).then((html) => {
         content.innerHTML = html;
 
         let btnVoltar = document.getElementById("btn-voltar");
+        let btnEntrar = document.querySelector("#btn-entrar");
+
         btnVoltar.addEventListener("click", () => {
-            tela02();
+            index();
+        });
+        btnEntrar.addEventListener('click', () => {
+            // Lógica do login
+
+            /*
+                CHECKLIST
+                 - api get
+                 - verificar se api retornou algo, senão mostrar erro 'Usuário não cadastrado'
+                 - se api retornou, salvar credenciais no localStorage
+                   - redirecionar para inicial
+            */
+
+            // apresentar na reunião:
+            window.location.href = '../inicial.html';
         })
     }).catch((err) => {
         console.warn('Algo deu errado!', err);
