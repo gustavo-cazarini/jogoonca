@@ -1,0 +1,109 @@
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400&display=swap");
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: 'Open Sans', sans-serif;
+    color: #fff;
+    background-image: url('../img/background.jpeg');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    margin: 0;
+    font-family: 'JetBrains Mono', monospace;
+ }
+ select {
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    -ms-appearance:none;
+    appearance:none;
+    outline:0;
+    box-shadow:none;
+    border:0!important;
+    background: #b3b4b3;
+    background-image: none;
+    flex: 1;
+    padding: 0 .5em;
+    color:#000000;
+    cursor:pointer;
+    font-size: 1em;
+    font-family: 'Open Sans', sans-serif;
+ }
+ select::-ms-expand {
+    display: none;
+ }
+ .select {
+    position: relative;
+    display: flex;
+    width: 20em;
+    height: 3em;
+    line-height: 3;
+    background: #737a79;
+    color: #000;
+    overflow: hidden;
+    border-radius: .25em;
+    margin-bottom: 50px;
+ }
+ .select::after {
+    content: '\25BC';
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0 1em;
+    background: #F6D365; 
+    cursor:pointer;
+    pointer-events:none;
+    transition:.25s all ease;
+ }
+ .select:hover::after {
+    color: #fcfcfc;
+ }
+ 
+ .retangulo {
+     background-color: #ffffff;
+     padding: 20px;
+     border-radius: 20px;
+     
+ }
+ 
+ .retangulo h1 {
+     text-align: center;
+     margin: 0;
+     color: black;
+     margin-top: 10px;
+     margin-bottom: 30px;
+ }
+ 
+ .button-container {
+     display: flex;
+     justify-content: space-between;
+     width: 100%;
+ }
+ 
+ .voltar{
+     background-color: #D42216;
+ }
+ 
+ .atualizar{
+     background-color: #006400;
+ }
+ 
+ button {
+     padding: 15px;
+     border-radius: 15px;
+     border: none;
+     color: #fff;
+     cursor: pointer;
+     transition: all 0.3s ease;
+ }
+ 
+ .voltar:hover {
+     background-color: #99342dd3;
+ }
+ 
+ .atualizar:hover {
+     background-color: #218621a4;
+ }

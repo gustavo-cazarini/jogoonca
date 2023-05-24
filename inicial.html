@@ -8,13 +8,16 @@
         <link rel="stylesheet" href="css/style.css" />
         <link rel="icon" type="image/x-icon" href="./icons/favicon.ico" />
     </head>
-    <body>
+    <body class="inicialpage">
+        <audio src="./audio/sound.wav" autoplay loop></audio>
         <button
+            id="logout-btn"
             class="bg-brown rounded-1 border-0 p-1em btn-logout m-10 position-abs"
         >
             <img src="./icons/logout.png" class="size-30" alt="" />
         </button>
         <button
+            id="config-btn"
             class="bg-brown rounded-1 border-0 p-1em btn-config m-10 position-abs"
         >
             <img src="./icons/config.png" class="size-30" alt="" />
@@ -33,14 +36,25 @@
         <div class="content-inicial w-37 d-block">
             <div class="grid-inicio">
                 <button class="btn w-100 bg-green">JOGAR</button>
-                <button class="btn w-100 bg-l-green">COMO JOGAR</button>
-                <button class="bg-brown rounded-1 border-0 p-1em m-10">
+                <button id="comoJogar-btn" class="btn w-100 bg-l-green">
+                    COMO JOGAR
+                </button>
+                <button
+                    id="user-btn"
+                    class="bg-brown rounded-1 border-0 p-1em m-10"
+                >
                     <img src="./icons/user.png" class="size-30" alt="" />
                 </button>
-                <button class="bg-brown rounded-1 border-0 p-1em m-10">
+                <button
+                    id="inventario-btn"
+                    class="bg-brown rounded-1 border-0 p-1em m-10"
+                >
                     <img src="./icons/edit.png" class="size-30" alt="" />
                 </button>
-                <button class="bg-brown rounded-1 border-0 p-1em m-10">
+                <button
+                    id="history-btn"
+                    class="bg-brown rounded-1 border-0 p-1em m-10"
+                >
                     <img src="./icons/history.png" class="size-30" alt="" />
                 </button>
             </div>
