@@ -1,43 +1,128 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="./pages/inventario/css/style.css" />
-        <title>Document</title>
-    </head>
-    <body>
-        <div class="retangulo">
-            <h1>INVENTÁRIO</h1>
-            <div class="select">
-                <select name="format" id="format1">
-                    <option selected disabled>Escolha a Peça</option>
-                </select>
-            </div>
-            <div class="select">
-                <select name="format" id="format2">
-                    <option selected disabled>Escolha o Tema</option>
-                </select>
-            </div>
-            <div class="select">
-                <select name="format" id="format3">
-                    <option selected disabled>Escolha a Skin</option>
-                </select>
-            </div>
+<div>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #fff;
+            margin: 0;
+        }
+        select {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            -ms-appearance: none;
+            appearance: none;
+            outline: 0;
+            box-shadow: none;
+            border: 0 !important;
+            background: #b3b4b3;
+            background-image: none;
+            flex: 1;
+            padding: 0 0.5em;
+            color: #000000;
+            cursor: pointer;
+            font-size: 1em;
+            font-family: "Open Sans", sans-serif;
+        }
+        select::-ms-expand {
+            display: none;
+        }
+        .select {
+            position: relative;
+            display: flex;
+            width: 20em;
+            height: 3em;
+            line-height: 3;
+            background: #737a79;
+            color: #000;
+            overflow: hidden;
+            border-radius: 0.25em;
+            margin-bottom: 50px;
+        }
+        .select::after {
+            content: "\25BC";
+            position: absolute;
+            top: 0;
+            right: 0;
+            padding: 0 1em;
+            background: #f6d365;
+            cursor: pointer;
+            pointer-events: none;
+            transition: 0.25s all ease;
+        }
+        .select:hover::after {
+            color: #fcfcfc;
+        }
 
-            <div class="button-container">
-                <button
-                    onclick="window.location.href = './inicial.html'"
-                    class="voltar"
-                    type="#"
-                >
-                    VOLTAR
-                </button>
-                <button class="atualizar" type="submit">ATUALIZAR</button>
-            </div>
+        .retangulo {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 20px;
+        }
+
+        .retangulo h1 {
+            text-align: center;
+            margin: 0;
+            color: black;
+            margin-top: 10px;
+            margin-bottom: 30px;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .voltar {
+            background-color: #d42216;
+        }
+
+        .atualizar {
+            background-color: #006400;
+        }
+
+        button {
+            padding: 15px;
+            border-radius: 15px;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .voltar:hover {
+            background-color: #99342dd3;
+        }
+
+        .atualizar:hover {
+            background-color: #218621a4;
+        }
+    </style>
+
+    <div class="retangulo">
+        <h1>INVENTÁRIO</h1>
+        <div class="select">
+            <select name="format" id="format1">
+                <option selected disabled>Escolha a Peça</option>
+            </select>
+        </div>
+        <div class="select">
+            <select name="format" id="format2">
+                <option selected disabled>Escolha o Tema</option>
+            </select>
+        </div>
+        <div class="select">
+            <select name="format" id="format3">
+                <option selected disabled>Escolha a Skin</option>
+            </select>
         </div>
 
-        <script src="./pages/inventario/js/script.js"></script>
-    </body>
-</html>
+        <div class="button-container">
+            <button id="voltar" class="voltar" type="#">VOLTAR</button>
+            <button class="atualizar" type="submit">ATUALIZAR</button>
+        </div>
+    </div>
+</div>

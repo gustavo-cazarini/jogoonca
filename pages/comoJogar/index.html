@@ -1,31 +1,127 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Document</title>
-        <link rel="stylesheet" href="./pages/comoJogar/css/style.css" />
-    </head>
-    <body>
-        <div class="container">
-            <div class="gif-container">
-                <img src="" alt="GIF" id="gif" />
-            </div>
-            <div class="retangulo-texto">
-                <div class="text-container">
-                    <p class="text" id="texto"></p>
-                </div>
-            </div>
-            <div class="botao-containerVoltar">
-                <button class="voltar" type="#" id="botaoVoltar">VOLTAR</button>
-            </div>
+<div>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
 
-            <div class="botao-containerMenu">
-                <button class="menu" id="continuar">CONTINUAR</button>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* define a altura do corpo como 100% da altura da viewport */
+            background-image: url("./pages/comoJogar/img/backgroundSelva.jpg") !important;
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            margin: 0;
+            font-family: "JetBrains Mono", monospace;
+        }
+
+        .container {
+            display: flex;
+            align-items: center;
+        }
+
+        .gif-container {
+            background-color: rgba(255, 255, 255, 0.815);
+            display: inline-block;
+            border-radius: 20px;
+            padding: 10px;
+            width: auto; /* Largura desejada da div container */
+            height: 650px; /* Altura desejada da div container */
+        }
+
+        .gif-container img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        .text-container {
+            flex: 1;
+            text-align: center;
+        }
+        .text {
+            font-size: 20px;
+            font-weight: bold;
+            color: #000000;
+        }
+
+        .retangulo-texto {
+            background-color: rgba(255, 255, 255, 0.815);
+            border-radius: 20px;
+            padding: 10px;
+            display: inline-block;
+            width: 350px; /* Ajuste a largura conforme necessário */
+            height: 150px; /* Ajuste a altura conforme necessário */
+            margin-left: 30px;
+        }
+
+        /*Botão Voltar*/
+        .botao-containerVoltar {
+            position: absolute;
+            margin-bottom: 300px;
+            margin-left: 780px;
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.815);
+            border-radius: 20px;
+        }
+
+        button {
+            padding: 15px;
+            border-radius: 15px;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: larger;
+        }
+
+        .voltar {
+            background-color: #d42216;
+        }
+        .voltar:hover {
+            background-color: #99342dd3;
+        }
+
+        /*Botão Menu / continuar*/
+
+        .botao-containerMenu {
+            position: absolute;
+            margin-bottom: -300px;
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.815);
+            border-radius: 20px;
+        }
+
+        .menu {
+            background-color: #006400;
+        }
+
+        .menu:hover {
+            background-color: #218621a4;
+        }
+    </style>
+    <div class="container">
+        <div class="gif-container">
+            <img src="" alt="GIF" id="gif" />
+        </div>
+        <div class="retangulo-texto">
+            <div class="text-container">
+                <p class="text" id="texto"></p>
             </div>
         </div>
+        <div class="botao-containerVoltar">
+            <button class="voltar" type="#" id="botaoVoltar">VOLTAR</button>
+        </div>
+        <div class="">
+            <button class="voltar" type="#" id="voltar">
+                Retornar ao Inicio
+            </button>
+        </div>
 
-        <script src="./pages/comoJogar/js/script.js"></script>
-    </body>
-</html>
+        <div class="botao-containerMenu">
+            <button class="menu" id="continuar">CONTINUAR</button>
+        </div>
+    </div>
+</div>

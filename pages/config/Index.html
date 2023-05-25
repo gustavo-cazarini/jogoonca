@@ -1,19 +1,185 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Pag02</title>
-    </head>
+<div>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* define a altura do corpo como 100% da altura da viewport */
+            margin: 0;
+        }
 
-    <body onclick="playAudioIndex()">
-        <h1>Iniciar</h1>
+        h1 {
+            color: green;
+        }
 
-        <audio id="meu-audio" src="audio.mp3" autoplay loop></audio>
+        .green {
+            color: green;
+        }
 
-        <script src="js/scriptConfig.js"></script>
+        .containerBox img {
+            width: 80px;
+            height: auto;
+            cursor: pointer;
+        }
 
-        <a href="pagina2.html">Voltar para a Página 1</a>
-    </body>
-</html>
+        .containerBox {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+
+        .btns-container {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+        }
+
+        .btns-container button {
+            background-color: transparent;
+            cursor: pointer;
+            border: 1px solid transparent;
+            border-radius: 5px;
+        }
+
+        .btns-container button:hover {
+            border-color: #aaa;
+        }
+
+        .btns-container button img {
+            width: 30px;
+        }
+
+        .buttonVoltar {
+            text-align: center;
+        }
+
+        .buttonVoltar button {
+            background-color: red;
+            color: white;
+            border: none;
+            padding-top: 5px;
+            padding-right: 40px;
+            padding-bottom: 5px;
+            padding-left: 40px;
+            border-radius: 10px;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+
+        .fundo-branco {
+            background-color: #ffffff;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border-radius: 24px;
+        }
+
+        .pause {
+            display: none;
+        }
+
+        .audiowave {
+            width: 200px;
+            height: 100px;
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+        }
+
+        .audiowave div {
+            width: 15px;
+            border-radius: 5px;
+            background-color: #aaa;
+        }
+
+        .audiowave div:nth-child(1) {
+            height: 10%;
+        }
+        .audiowave div:nth-child(2) {
+            height: 20%;
+        }
+        .audiowave div:nth-child(3) {
+            height: 30%;
+        }
+        .audiowave div:nth-child(4) {
+            height: 40%;
+        }
+        .audiowave div:nth-child(5) {
+            height: 50%;
+        }
+        .audiowave div:nth-child(6) {
+            height: 60%;
+        }
+        .audiowave div:nth-child(7) {
+            height: 70%;
+        }
+        .audiowave div:nth-child(8) {
+            height: 80%;
+        }
+        .audiowave div:nth-child(9) {
+            height: 90%;
+        }
+
+        .button-container {
+            width: 100%;
+            text-align: center;
+        }
+
+        .botao-voltar {
+            background-color: #ff0000; /* cor vermelha */
+            width: 80%;
+            color: #fff; /* cor do texto */
+            padding: 10px 20px; /* espaçamento interno */
+            border: none; /* remover borda */
+            border-radius: 10px; /* arredondar bordas */
+            cursor: pointer; /* cursor ao passar o mouse */
+            font-size: 16px; /* tamanho da fonte */
+            margin-top: 50px;
+        }
+
+        /* estilo ao passar o mouse */
+        .botao-voltar:hover {
+            opacity: 0.8;
+        }
+    </style>
+
+    <div class="fundo-branco">
+        <h1>CONFIGURAÇÕES</h1>
+
+        <h3 class="text-center green">Música</h3>
+        <div class="containerBox">
+            <div class="audiowave">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+
+        <div class="btns-container">
+            <button type="button" id="abaixar-btn">
+                <img src="./icons/diminuir.png" alt="" />
+            </button>
+            <button type="button" id="play-pause">
+                <img src="" alt="" />
+            </button>
+            <button type="button" id="aumentar-btn">
+                <img src="./icons/aumentar.png" alt="" />
+            </button>
+        </div>
+
+        <div class="button-container">
+            <button id="voltar" class="botao-voltar" type="button">
+                Voltar
+            </button>
+        </div>
+    </div>
+</div>
