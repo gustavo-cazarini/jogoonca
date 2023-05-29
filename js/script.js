@@ -70,6 +70,7 @@ if (document.body.classList.contains("indexpage")) {
 
                 let btnVoltar = document.getElementById("btn-voltar");
                 let btnEntrar = document.querySelector("#btn-entrar");
+                let linkEsqueceu = document.querySelector("#link-esqueceu");
 
                 btnVoltar.addEventListener("click", () => {
                     index();
@@ -88,10 +89,44 @@ if (document.body.classList.contains("indexpage")) {
                     // apresentar na reunião:
                     window.location.href = "../inicial.html";
                 });
+
+                linkEsqueceu.addEventListener("click", () => {
+                    telaEsqueceu();
+                });
             })
             .catch((err) => {
                 console.warn("Algo deu errado!", err);
             });
+    }
+
+    function telaEsqueceu() {
+        fetch("../htmlparts/esqueceu_senha.html")
+            .then((response) => {
+                return response.text();
+            })
+            .then((html) => {
+                content.innerHTML = html;
+
+                let btnVoltar = document.getElementById("btn-voltar");
+                let btnConfirmar = document.querySelector("#btn-confirmar");
+
+                btnVoltar.addEventListener("click", () => {
+                    index();
+                });
+
+                btnConfirmar.addEventListener("click", () => {
+                    enviarEmail();
+                });
+            })
+            .catch((err) => {
+                console.warn("Algo deu errado!", err);
+            });
+    }
+
+    function enviarEmail() {
+        alert(
+            "Um Email com as instruções foram enviados para você\n\nAbra sua caixa de email e verifique"
+        );
     }
 }
 

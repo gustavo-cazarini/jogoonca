@@ -137,6 +137,18 @@ body {
 }
 /* --- */
 
+/* ESQUECI A SENHA */
+.form-esqueceu div:first-child {
+    margin: 45px auto;
+    width: 80%;
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+    grid-template-rows: repeat(1, 1fr);
+    grid-column-gap: 10px;
+    grid-row-gap: 25px;
+    color: var(--green);
+}
+
 /* ESTILOS GLOBAIS */
 .position-abs {
     position: absolute;
@@ -219,6 +231,14 @@ body {
 
 .justify-around {
     justify-content: space-around;
+}
+
+.underline {
+    text-decoration: underline;
+}
+
+.pointer {
+    cursor: pointer;
 }
 
 .m-5 {
