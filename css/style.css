@@ -148,10 +148,40 @@ body {
     grid-row-gap: 25px;
     color: var(--green);
 }
+/* --- */
+
+/* JOGO */
+.page-jogo {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+
+.page-jogo .content {
+    background-color: #fff;
+    width: 70%;
+    height: 80%;
+    border-radius: 17px;
+}
 
 /* ESTILOS GLOBAIS */
 .position-abs {
     position: absolute;
+}
+
+.circle {
+    border-radius: 50%;
+}
+
+.position-relative {
+    position: relative;
+}
+
+.right-0 {
+    right: 0;
 }
 
 .w-100 {
@@ -176,6 +206,18 @@ body {
 
 .border-0 {
     border: none;
+}
+
+.border-1 {
+    border: 1px solid black;
+}
+
+.border-2 {
+    border: 2px solid black;
+}
+
+.bottom-0 {
+    bottom: 0;
 }
 
 .bg-brown {

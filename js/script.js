@@ -159,7 +159,12 @@ if (document.body.classList.contains("inicialpage")) {
                 });
 
                 // Botões do centro
+                let btnJogar = document.querySelector('#jogar-btn');
                 let btnComoJogar = document.querySelector("#comoJogar-btn");
+
+                btnJogar.addEventListener('click', () => {
+                    location.href = './pages/jogo';
+                });
 
                 btnComoJogar.addEventListener("click", () => {
                     telaComoJogar();
@@ -511,4 +516,50 @@ if (document.body.classList.contains("inicialpage")) {
     }
 
     inicial();
+}
+
+if (document.body.classList.contains("page-jogo")) {
+    const construct = async (html, funcoes) => {
+        let content = document.querySelector('#content');
+        await html().then((res) => {
+            content.innerHTML = res;
+            funcoes();
+        });
+    }
+
+    async function escolhaPeca() {
+        return await fetch('./escolha_peca.html')
+            .then((res) => {
+                return res.text();
+            });
+    }
+
+    function funcoesPeca() {
+        let btnVoltar = document.querySelector('#btn-voltar');
+        let pecas = document.querySelectorAll('.peca');
+
+        pecas.forEach((peca) => {
+            peca.addEventListener('click', function () {
+                localStorage.setItem("peca", this.getAttribute('data-peca'));
+                construct(escolhaTema, funcoesTema);
+            });
+        });
+
+        btnVoltar.addEventListener('click', () => {
+            location.href = '../../inicial.html';
+        });
+    }
+
+    async function escolhaTema() {
+        return await fetch('./escolha_tema.html')
+            .then((res) => {
+                return res.text();
+            });
+    }
+
+    function funcoesTema() {
+        return;
+    }
+
+    construct(escolhaPeca, funcoesPeca);
 }
