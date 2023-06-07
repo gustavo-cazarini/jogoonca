@@ -1,0 +1,159 @@
+body {
+    width: 100vw;
+    height: 100vh;
+    background-color: aquamarine;
+    background-image: url("../../../TEMAS/selva/fundo.png");
+    background-size: 100% 100%;
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+
+.flex-centered {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tempo {
+    position: absolute;
+    top: 0;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 20%;
+    color: #f61708;
+    background-color: #ffffffcc;
+    display: flex;
+    align-items: center;
+}
+
+.gameBoardContainer {
+    width: 40%;
+    height: 90%;
+    border-radius: 2rem;
+    background-color: #ffffffdd;
+    padding: 25px;
+}
+
+.gameBoard {
+    width: 100%;
+    height: 100%;
+    background-color: #009ba720;
+    background-image: url("../../../img/tabuleiro.png");
+    background-size: 100% 100%;
+}
+
+.tema-placar {
+    position: absolute;
+    bottom: 0;
+    width: 50%;
+    left: -10%;
+}
+
+.img-placar {
+    width: 20%;
+    position: relative;
+    height: 30%;
+    background-image: url("../../../img/placar.png");
+    background-size: 100% 100%;
+    position: absolute;
+    bottom: 0;
+    left: 5%;
+}
+
+.img-placar span {
+    position: absolute;
+    left: 50%;
+    top: 30%;
+    font-size: 2.5rem;
+}
+
+/* TABULEIRO */
+.row {
+    display: flex;
+    justify-content: space-around;
+}
+
+.cell {
+    width: 18%;
+    height: 58px;
+    border: 4px solid rgb(0, 0, 0);
+    margin: 2px;
+    display: flex;
+    /* deixe circular */
+    border-radius: 50%;
+    /* espaço entre as peças de 5px */
+    margin: 8px;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+}
+
+.cell1 {
+    width: 18%;
+    height: 58px;
+    border: 4px solid rgba(255, 255, 255, 0);
+    margin: 2px;
+    display: flex;
+    /* deixe circular */
+    border-radius: 50%;
+    /* espaço entre as peças de 5px */
+    margin: 8px;
+    align-items: center;
+    justify-content: center;
+}
+
+.piece-dog {
+    background-image: url("../../../TEMAS/selva/zebra.png");
+    background-size: 100% 100%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.piece-jaguar {
+    background-image: url("../../../TEMAS/selva/leao.png");
+    background-size: 100% 100%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.piece:hover {
+    opacity: 0.8;
+}
+
+.highlight {
+    background-color: rgb(94, 245, 114);
+}
+
+.blue-piece {
+    background-color: blue;
+    border-radius: 50%;
+    cursor: pointer;
+    width: 60px;
+    height: 60px;
+}
+
+.occupied {
+    background-color: #fc5462 !important;
+}
+
+.anuncio {
+    max-width: 10%;
+    max-height: 50%;
+    overflow-y: scroll;
+    background-color: #fff;
+    border-radius: 10px;
+    position: absolute;
+    right: 0;
+    top: 25%;
+    margin-right: 10px;
+}
+
+.btn-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 20px;
+}

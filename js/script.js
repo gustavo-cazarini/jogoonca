@@ -517,7 +517,11 @@ if (document.body.classList.contains("inicialpage")) {
 
     inicial();
 }
+/*
 
+--
+
+*/
 if (document.body.classList.contains("page-jogo")) {
     const construct = async (html, funcoes) => {
         let content = document.querySelector('#content');
@@ -525,6 +529,15 @@ if (document.body.classList.contains("page-jogo")) {
             content.innerHTML = res;
             funcoes();
         });
+    }
+
+    function temas() {
+        // temporário... aqui vai ser o 'get' dos temas
+        return [{ id: 1, nome: "Super Mario", img: "../../img/cachorro.jpeg", fundo: "../../img/onca.png" }];
+    }
+    function skins() {
+        // temporário... aqui vai ser o 'get' das skins
+        return [{ id: 1, nome: "Super Mario", img: "../../img/cachorro.jpeg" }];
     }
 
     async function escolhaPeca() {
@@ -558,7 +571,90 @@ if (document.body.classList.contains("page-jogo")) {
     }
 
     function funcoesTema() {
-        return;
+        let btnVoltar = document.querySelector('#btn-voltar');
+        let flexContainer = document.querySelector('.d-flex');
+
+        btnVoltar.addEventListener('click', () => {
+            construct(escolhaPeca, funcoesPeca);
+        });
+
+        let objArr = temas();
+        let temasStr = "";
+
+        objArr.forEach((key) => {
+            temasStr += `
+                <div>
+                    <img data-fundo="${key.fundo}" data-id="${key.id}" class="border-2 circle tema" width="150px"
+                        height="150px" src="${key.img}" alt="imgTema" />
+                    <p class="text-center text-green">${key.nome}</p>
+                </div>
+            `
+        });
+        flexContainer.innerHTML = temasStr;
+
+        let arrTemas = document.querySelectorAll('.tema');
+        arrTemas.forEach((key) => {
+            key.addEventListener('click', function () {
+                localStorage.setItem('fundo', this.getAttribute('data-fundo'));
+                localStorage.setItem('tema', this.getAttribute('data-id'));
+                construct(escolhaSkin, funcoesSkin);
+            });
+        });
+    }
+
+    async function escolhaSkin() {
+        return await fetch('./escolha_skin.html')
+            .then((res) => {
+                return res.text();
+            });
+    }
+
+    function funcoesSkin() {
+        document.querySelector('html').style.backgroundImage = `url(${localStorage.getItem('fundo')})`;
+        let btnVoltar = document.querySelector('#btn-voltar');
+        let flexContainer = document.querySelector('.d-flex');
+
+        btnVoltar.addEventListener('click', () => {
+            construct(escolhaTema, funcoesTema);
+        });
+
+        let objArr = skins();
+        let skinsStr = "";
+
+        objArr.forEach((key) => {
+            skinsStr += `
+                <div>
+                    <img data-id="${key.id}" data-skin="${key.img}" class="border-2 circle tema" width="150px"
+                        height="150px" src="${key.img}" alt="imgTema" />
+                    <p class="text-center text-green">${key.nome}</p>
+                </div>
+            `
+        });
+        flexContainer.innerHTML = skinsStr;
+
+        let arrSkins = document.querySelectorAll('.tema');
+        arrSkins.forEach((key) => {
+            key.addEventListener('click', function () {
+                localStorage.setItem('skin', this.getAttribute('data-skin'));
+                localStorage.setItem('idSkin', this.getAttribute('data-id'));
+                construct(esperaJogador, funcoesEspera);
+            });
+        });
+    }
+
+    async function esperaJogador() {
+        return await fetch('./espera_jogador.html')
+            .then((res) => {
+                return res.text();
+            });
+    }
+
+    function funcoesEspera() {
+        let btnVoltar = document.querySelector('#btn-voltar');
+
+        btnVoltar.addEventListener('click', () => {
+            construct(escolhaSkin, funcoesSkin);
+        });
     }
 
     construct(escolhaPeca, funcoesPeca);
