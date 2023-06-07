@@ -157,3 +157,15 @@ body {
     right: 0;
     margin: 20px;
 }
+
+.btn-brown {
+    background-color: #b19897;
+    padding: 10px;
+    cursor: pointer;
+    border: 1px solid transparent;
+    border-radius: 5px;
+}
+
+.btn-brown:hover {
+    background-color: #957372;
+}
