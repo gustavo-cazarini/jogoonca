@@ -2,94 +2,104 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Jogo da Onça</title>
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/style.css" />
 </head>
 
 <body>
-    <div class="tempo">
-        <img src="../../icons/tempo.png" width="24px" alt="">&nbsp;
-        00:00:<span id="tempo"></span>
-    </div>
-    <div class="flex-centered">
-        <div class="gameBoardContainer">
-            <div class="gameBoard">
-                <div class="row">
-                    <div class="cell piece-dog" data-x="0" data-y="0"></div>
-                    <div class="cell piece-dog" data-x="1" data-y="0"></div>
-                    <div class="cell piece-dog" data-x="2" data-y="0"></div>
-                    <div class="cell piece-dog" data-x="3" data-y="0"></div>
-                    <div class="cell piece-dog" data-x="4" data-y="0"></div>
-                </div>
-                <div class="row">
-                    <div class="cell piece-dog" data-x="0" data-y="1"></div>
-                    <div class="cell piece-dog" data-x="1" data-y="1"></div>
-                    <div class="cell piece-dog" data-x="2" data-y="1"></div>
-                    <div class="cell piece-dog" data-x="3" data-y="1"></div>
-                    <div class="cell piece-dog" data-x="4" data-y="1"></div>
-                </div>
-                <div class="row">
-                    <div class="cell piece-dog" data-x="0" data-y="2"></div>
-                    <div class="cell piece-dog" data-x="1" data-y="2"></div>
-                    <div class="cell piece-jaguar" data-x="2" data-y="2"></div>
-                    <div class="cell piece-dog" data-x="3" data-y="2"></div>
-                    <div class="cell piece-dog" data-x="4" data-y="2"></div>
-                </div>
-                <div class="row">
-                    <div class="cell" data-x="0" data-y="3"></div>
-                    <div class="cell" data-x="1" data-y="3"></div>
-                    <div class="cell" data-x="2" data-y="3"></div>
-                    <div class="cell" data-x="3" data-y="3"></div>
-                    <div class="cell" data-x="4" data-y="3"></div>
-                </div>
-                <div class="row">
-                    <div class="cell" data-x="0" data-y="4"></div>
-                    <div class="cell" data-x="1" data-y="4"></div>
-                    <div class="cell" data-x="2" data-y="4"></div>
-                    <div class="cell" data-x="3" data-y="4"></div>
-                    <div class="cell" data-x="4" data-y="4"></div>
-                </div>
+    <div class="parent">
+        <div class="grid-time">
+            <div class="tempo">
+                <img src="./img/icons/timer.png" width="25px" alt="" /><span>00:00:<span id="tempo">15</span></span>
+            </div>
+        </div>
 
-                <!--Toca-->
+        <div class="grid-diversao"></div>
 
-                <div class="row">
-                    <div class="cell1" data-x="0" data-y="5"></div>
-                    <div class="cell" data-x="1" data-y="5"></div>
-                    <div class="cell" data-x="2" data-y="5"></div>
-                    <div class="cell" data-x="3" data-y="5"></div>
-                    <div class="cell1" data-x="4" data-y="5"></div>
-                </div>
-                <div class="row">
-                    <div class="cell" data-x="0" data-y="6"></div>
-                    <div class="cell1" data-x="1" data-y="6"></div>
-                    <div class="cell" data-x="2" data-y="6"></div>
-                    <div class="cell1" data-x="3" data-y="6"></div>
-                    <div class="cell" data-x="4" data-y="6"></div>
+        <div class="grid-placar">
+            <img class="tema-placar" src="./img/monkey.png" alt="" />
+            <img class="img-placar" src="./img/placar.png" alt="" />
+            <span id="score">0</span>
+        </div>
+
+        <div class="grid-tabuleiro">
+            <div class="tabuleiro-container">
+                <div class="tabuleiro">
+                    <div class="row">
+                        <div class="cell piece-dog" data-x="0" data-y="0"></div>
+                        <div class="cell piece-dog" data-x="1" data-y="0"></div>
+                        <div class="cell piece-dog" data-x="2" data-y="0"></div>
+                        <div class="cell piece-dog" data-x="3" data-y="0"></div>
+                        <div class="cell piece-dog" data-x="4" data-y="0"></div>
+                    </div>
+                    <div class="row">
+                        <div class="cell piece-dog" data-x="0" data-y="1"></div>
+                        <div class="cell piece-dog" data-x="1" data-y="1"></div>
+                        <div class="cell piece-dog" data-x="2" data-y="1"></div>
+                        <div class="cell piece-dog" data-x="3" data-y="1"></div>
+                        <div class="cell piece-dog" data-x="4" data-y="1"></div>
+                    </div>
+                    <div class="row">
+                        <div class="cell piece-dog" data-x="0" data-y="2"></div>
+                        <div class="cell piece-dog" data-x="1" data-y="2"></div>
+                        <div class="cell piece-jaguar" data-x="2" data-y="2"></div>
+                        <div class="cell piece-dog" data-x="3" data-y="2"></div>
+                        <div class="cell piece-dog" data-x="4" data-y="2"></div>
+                    </div>
+                    <div class="row">
+                        <div class="cell" data-x="0" data-y="3"></div>
+                        <div class="cell" data-x="1" data-y="3"></div>
+                        <div class="cell" data-x="2" data-y="3"></div>
+                        <div class="cell" data-x="3" data-y="3"></div>
+                        <div class="cell" data-x="4" data-y="3"></div>
+                    </div>
+                    <div class="row">
+                        <div class="cell" data-x="0" data-y="4"></div>
+                        <div class="cell" data-x="1" data-y="4"></div>
+                        <div class="cell" data-x="2" data-y="4"></div>
+                        <div class="cell" data-x="3" data-y="4"></div>
+                        <div class="cell" data-x="4" data-y="4"></div>
+                    </div>
+
+                    <!--Toca-->
+
+                    <div class="row">
+                        <div class="cell1" data-x="0" data-y="5"></div>
+                        <div class="cell" data-x="1" data-y="5"></div>
+                        <div class="cell" data-x="2" data-y="5"></div>
+                        <div class="cell" data-x="3" data-y="5"></div>
+                        <div class="cell1" data-x="4" data-y="5"></div>
+                    </div>
+                    <div class="row">
+                        <div class="cell" data-x="0" data-y="6"></div>
+                        <div class="cell1" data-x="1" data-y="6"></div>
+                        <div class="cell" data-x="2" data-y="6"></div>
+                        <div class="cell1" data-x="3" data-y="6"></div>
+                        <div class="cell" data-x="4" data-y="6"></div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <img class="tema-placar" src="../../TEMAS/selva/placar.png" alt="">
-    <div class="img-placar">
-        <span id="score">0</span>
-    </div>
-    <div class="anuncio">
-        <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Velit perspiciatis quos, nostrum id quis
-            architecto iste eum inventore vel! Corporis quisquam, dolore autem esse explicabo error harum laborum omnis?
-            Ea!
-        </p>
-    </div>
 
-    <div class="btn-container">
-        <button type="button" class="btn-brown"><img width="25px" src="../../icons/mute.png" /></button>
-        <button type="button" class="btn-brown"><img width="25px" src="../../icons/logout.png" /></button>
+        <div class="grid-btn-diversao"></div>
+
+        <div class="grid-btn-grupo">
+            <div class="container">
+                <button id="mute-Button"><img src="./img/icons/mute.png" alt="" /></button>
+                <button id="btn-sair"><img src="./img/icons/exit.png" alt="" /></button>
+            </div>
+        </div>
+
+        <div class="grid-anuncio">
+            <div class="anuncio"></div>
+        </div>
     </div>
 
     <script type="module" src="./js/main.js"></script>
+    <script></script>
 </body>
 
 </html>

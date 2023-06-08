@@ -1,128 +1,226 @@
 body {
+    margin: 0;
     width: 100vw;
     height: 100vh;
-    background-color: aquamarine;
-    background-image: url("../../../TEMAS/selva/fundo.png");
+    background-image: url("../img/fundo.png");
     background-size: 100% 100%;
-    margin: 0;
-    padding: 0;
+}
+
+.parent {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: 1fr repeat(2, 2fr) repeat(2, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+}
+
+/*
+.parent div {
+    border: 1px solid black;
+}
+*/
+
+.grid-time {
+    grid-area: 1 / 1 / 2 / 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.grid-tabuleiro {
+    grid-area: 1 / 2 / 5 / 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.grid-btn-grupo {
+    grid-area: 1 / 3 / 2 / 4;
+}
+.grid-anuncio {
+    grid-area: 2 / 3 / 5 / 4;
+}
+.grid-btn-diversao {
+    grid-area: 5 / 2 / 6 / 3;
+}
+.grid-diversao {
+    grid-area: 2 / 1 / 4 / 2;
+}
+.grid-placar {
+    grid-area: 4 / 1 / 6 / 2;
     position: relative;
 }
 
-.flex-centered {
-    width: 100%;
-    height: 100%;
+.tabuleiro-container {
+    width: 70%;
+    min-width: 390px;
+    height: 95%;
+    background-color: #ffffffe1;
+    border-radius: 1.2rem;
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+}
+
+.tabuleiro {
+    background-image: url("../img/tabuleiro.png");
+    background-size: 100% 100%;
+    width: 90%;
+    height: 90%;
+    max-height: 483px;
+    min-height: 483px;
+    background-color: #00648b33;
 }
 
 .tempo {
-    position: absolute;
-    top: 0;
-    margin: 20px;
-    padding: 20px;
-    border-radius: 20%;
-    color: #f61708;
-    background-color: #ffffffcc;
-    display: flex;
-    align-items: center;
-}
-
-.gameBoardContainer {
     width: 40%;
-    height: 90%;
-    border-radius: 2rem;
-    background-color: #ffffffdd;
-    padding: 25px;
-}
-
-.gameBoard {
-    width: 100%;
-    height: 100%;
-    background-color: #009ba720;
-    background-image: url("../../../img/tabuleiro.png");
-    background-size: 100% 100%;
+    color: #f61708;
+    font-size: 1.3rem;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px;
+    border-radius: 1.5rem;
+    border: 1px solid transparent;
+    background-color: #ffffffe1;
 }
 
 .tema-placar {
+    width: 50%;
     position: absolute;
     bottom: 0;
-    width: 50%;
-    left: -10%;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .img-placar {
-    width: 20%;
-    position: relative;
-    height: 30%;
-    background-image: url("../../../img/placar.png");
-    background-size: 100% 100%;
+    width: 50%;
     position: absolute;
     bottom: 0;
-    left: 5%;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.img-placar span {
+.grid-placar span {
     position: absolute;
-    left: 50%;
-    top: 30%;
+    bottom: 30%;
     font-size: 2.5rem;
+    font-weight: bold;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
 }
 
-/* TABULEIRO */
+/* Tabuleiro */
 .row {
     display: flex;
     justify-content: space-around;
 }
 
 .cell {
-    width: 18%;
-    height: 58px;
-    border: 4px solid rgb(0, 0, 0);
+    width: 48px;
+    background-color: #fff;
+    height: 48px;
+    border: 2px solid rgb(0, 0, 0);
     margin: 2px;
     display: flex;
     /* deixe circular */
-    border-radius: 50%;
+    border-radius: 42%;
     /* espaço entre as peças de 5px */
     margin: 8px;
     align-items: center;
     justify-content: center;
-    background-color: #fff;
 }
 
 .cell1 {
-    width: 18%;
-    height: 58px;
-    border: 4px solid rgba(255, 255, 255, 0);
+    width: 48px;
+    height: 48px;
+    border: 2px solid rgba(255, 255, 255, 0);
     margin: 2px;
     display: flex;
     /* deixe circular */
-    border-radius: 50%;
+    border-radius: 42%;
     /* espaço entre as peças de 5px */
     margin: 8px;
     align-items: center;
     justify-content: center;
 }
 
-.piece-dog {
-    background-image: url("../../../TEMAS/selva/zebra.png");
-    background-size: 100% 100%;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
+.piece-dog,
 .piece-jaguar {
-    background-image: url("../../../TEMAS/selva/leao.png");
     background-size: 100% 100%;
     cursor: pointer;
     transition: all 0.3s ease;
 }
 
-.piece:hover {
-    opacity: 0.8;
+.piece-dog {
+    background-image: url("../img/cachorro.png");
+}
+.piece-jaguar {
+    background-image: url("../img/onca.png");
 }
 
+/*
+
+
+*/
+.grid-btn-grupo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.grid-btn-grupo .container {
+    width: 60%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.grid-btn-grupo button {
+    background-color: #b19897;
+    border: 1px solid transparent;
+    border-radius: 0.7rem;
+}
+
+.grid-btn-grupo button:hover {
+    background-color: #957372;
+}
+
+.grid-btn-grupo img {
+    width: 35px;
+}
+/*
+
+
+    ANÚNCIO
+*/
+.grid-anuncio {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+.grid-anuncio .anuncio {
+    max-width: 70%;
+    background-color: #ffffffe1;
+    max-height: 100%;
+    margin-right: 20px;
+    border-radius: 2rem;
+}
+
+/*
+
+
+    HIGHLIGHT
+*/
 .highlight {
     background-color: rgb(94, 245, 114);
 }
@@ -136,36 +234,5 @@ body {
 }
 
 .occupied {
-    background-color: #fc5462 !important;
-}
-
-.anuncio {
-    max-width: 10%;
-    max-height: 50%;
-    overflow-y: scroll;
-    background-color: #fff;
-    border-radius: 10px;
-    position: absolute;
-    right: 0;
-    top: 25%;
-    margin-right: 10px;
-}
-
-.btn-container {
-    position: absolute;
-    top: 0;
-    right: 0;
-    margin: 20px;
-}
-
-.btn-brown {
-    background-color: #b19897;
-    padding: 10px;
-    cursor: pointer;
-    border: 1px solid transparent;
-    border-radius: 5px;
-}
-
-.btn-brown:hover {
-    background-color: #957372;
+    background-color: #fc5462;
 }

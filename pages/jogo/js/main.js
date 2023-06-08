@@ -62,8 +62,10 @@ onInitGame();
 */
 let spanTempo = document.querySelector('#tempo');
 let tempoTurno = 15;
-spanTempo.textContent = tempoTurno;
 let turno = 0;
+let btnSair = document.querySelector('#btn-sair');
+
+spanTempo.textContent = tempoTurno;
 
 const timerStart = () => {
     setInterval(() => {
@@ -88,6 +90,12 @@ function vezde(val) {
 
 timerStart();
 vezde(turno);
+
+btnSair.addEventListener('click', () => {
+    if (confirm('Você tem certeza que deseja sair?')) {
+        location.href = '../../inicial.html';
+    }
+});
 
 /*
 

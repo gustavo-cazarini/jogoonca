@@ -655,6 +655,10 @@ if (document.body.classList.contains("page-jogo")) {
         btnVoltar.addEventListener('click', () => {
             construct(escolhaSkin, funcoesSkin);
         });
+
+        setTimeout(() => {
+            location.href = './game.html';
+        }, 10000);
     }
 
     construct(escolhaPeca, funcoesPeca);
