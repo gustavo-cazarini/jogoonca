@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html class="fundoSelva" lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jogo da Onça</title>
+    <link rel="stylesheet" href="../../css/style.css" />
+    <link rel="icon" type="image/x-icon" href="../../icons/favicon.ico" />
+</head>
+
+<body class="redefinirSenha">
+    <div class="text-center">
+        <img id="imgLogo" class="resize-img" draggable="false" src="../../img/jdoLogo.png" width="40%" alt="" />
+    </div>
+
+    <div class="w-37 p-1em rounded d-block bg-white esqueceu-container">
+        <h2 class="text-center text-green">REDEFINIR SENHA</h2>
+        <p class="text-center login">
+            Login:
+        </p>
+        <form class="form-esqueceu" action="">
+            <div class="mb-3">
+                <label class="" for="email">NOVA SENHA</label>
+                <input class="input-reset" type="password" name="senha" id="senha" />
+            </div>
+            <div class="">
+                <label class="" for="email">CONFIRMAR SENHA</label>
+                <input class="input-reset" type="password" name="confirmaSenha" id="confirmaSenha" />
+            </div>
+
+            <p class="msg-err text-center text-red"></p>
+
+            <div class="mb-1 d-flex justify-around">
+                <button class="btn pointer bg-red" type="button" id="btn-voltar">
+                    VOLTAR AO INICIO
+                </button>
+                <button class="btn pointer bg-green" type="button" id="btn-salvar">
+                    SALVAR
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <script src="../../js/script.js"></script>
+</body>
+
+</html>
