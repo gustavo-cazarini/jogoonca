@@ -201,5 +201,5 @@ function updateBoard(newMove) {
     highlightCells();
 }
     
-// Chamar a função checkForNewMove a cada 1 segundo
-setInterval(checkForNewMove, 1000); // 1 segundo
+// Chamar a função checkForNewMove a cada 2 segundos
+setInterval(checkForNewMove, 2000); // 2 segundos
