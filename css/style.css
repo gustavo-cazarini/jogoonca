@@ -2,6 +2,7 @@
 
 :root {
     --green: #006400;
+    --red: rgb(145, 0, 0);
 }
 
 body {
@@ -139,7 +140,18 @@ body {
 
 /* ESQUECI A SENHA */
 .form-esqueceu div:first-child {
-    margin: 45px auto;
+    margin: 20px auto;
+    width: 80%;
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+    grid-template-rows: repeat(1, 1fr);
+    grid-column-gap: 10px;
+    grid-row-gap: 25px;
+    color: var(--green);
+}
+
+.form-esqueceu div:nth-child(2) {
+    margin: 20px auto;
     width: 80%;
     display: grid;
     grid-template-columns: 1fr 5fr;
@@ -170,6 +182,10 @@ body {
 /* ESTILOS GLOBAIS */
 .position-abs {
     position: absolute;
+}
+
+.text-red {
+    color: var(--red);
 }
 
 .circle {

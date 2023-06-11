@@ -1,3 +1,5 @@
+const apiUrl = 'http://localhost:3333/';
+
 if (document.body.classList.contains("indexpage")) {
     const index = () => {
         fetch("../htmlparts/pg_cad_login.html")
@@ -45,14 +47,23 @@ if (document.body.classList.contains("indexpage")) {
                 btnVoltar.addEventListener("click", () => {
                     index();
                 });
+
+                async function cadastro(nome, email, login, senha) {
+                    let ret = await fetch(`${apiUrl}api/user?&Nome=${nome}&IsActive=true&Email=${email}&Login=${login}&Senha=${senha}`, { method: 'POST' }).then((res) => {
+                        return res.status;
+                    });
+                    if (ret == 201) {
+                        alert('Cadastrado com sucesso!\nPor favor faça Login');
+                        location.href = '../index.html';
+                    }
+                }
+
                 btnCad.addEventListener("click", () => {
-                    // Lógica do cadastro
-                    /*
-                    CHECKLIST
-                     - api post
-                     - alertar sucesso solicitando o login
-                     - redirecionar para index
-                */
+                    let nome = document.querySelector('#nome').value;
+                    let email = document.querySelector('#email').value;
+                    let login = document.querySelector('#login').value;
+                    let senha = document.querySelector('#senha').value;
+                    cadastro(nome, email, login, senha);
                 });
             })
             .catch((err) => {
@@ -71,23 +82,30 @@ if (document.body.classList.contains("indexpage")) {
                 let btnVoltar = document.getElementById("btn-voltar");
                 let btnEntrar = document.querySelector("#btn-entrar");
                 let linkEsqueceu = document.querySelector("#link-esqueceu");
+                let inpLogin = document.querySelector('#login');
+                let inpSenha = document.querySelector('#senha');
+                let msgErr = document.querySelector('.msg-err');
 
                 btnVoltar.addEventListener("click", () => {
                     index();
                 });
+
+                async function login(log, senha) {
+                    await fetch(`${apiUrl}api/login?Login=${log}&Senha=${senha}`)
+                        .then((res) => {
+                            return res.text();
+                        }).then((data) => {
+                            if (data.length > 2) {
+                                localStorage.setItem('jogador', data);
+                                location.href = './inicial.html';
+                            } else {
+                                msgErr.textContent = 'Usuário ou Senha incorretos';
+                            }
+                        });
+                }
+
                 btnEntrar.addEventListener("click", () => {
-                    // Lógica do login
-
-                    /*
-                    CHECKLIST
-                     - api get
-                     - verificar se api retornou algo, senão mostrar erro 'Usuário não cadastrado'
-                     - se api retornou, salvar credenciais no localStorage
-                       - redirecionar para inicial
-                */
-
-                    // apresentar na reunião:
-                    window.location.href = "../inicial.html";
+                    login(inpLogin.value, inpSenha.value);
                 });
 
                 linkEsqueceu.addEventListener("click", () => {
@@ -109,13 +127,14 @@ if (document.body.classList.contains("indexpage")) {
 
                 let btnVoltar = document.getElementById("btn-voltar");
                 let btnConfirmar = document.querySelector("#btn-confirmar");
+                let email = document.querySelector("#email");
 
                 btnVoltar.addEventListener("click", () => {
                     index();
                 });
 
                 btnConfirmar.addEventListener("click", () => {
-                    enviarEmail();
+                    enviarEmail(email.value);
                 });
             })
             .catch((err) => {
@@ -123,14 +142,71 @@ if (document.body.classList.contains("indexpage")) {
             });
     }
 
-    function enviarEmail() {
-        alert(
-            "Um Email com as instruções foram enviados para você\n\nAbra sua caixa de email e verifique"
-        );
+    function enviarEmail(email) {
+        fetch(`${apiUrl}api/email/${email}`)
+            .then((response) => {
+                return response.json();
+            })
+            .then((html) => {
+                console.log(html);
+                if (html?.length) {
+                    localStorage.setItem('recuperar_senha', JSON.stringify(html));
+                    location.href = './pages/recuperarSenha';
+                } else {
+                    document.querySelector('.msg-err').textContent = 'E-Mail não encontrado';
+                }
+            });
     }
 }
+/*
 
-// SCRIPT PARA AS PÁGINAS DO JOGO
+
+    REDEFINIR SENHA
+*/
+if (document.body.classList.contains("redefinirSenha")) {
+    let dadosUsuario = localStorage.getItem('recuperar_senha');
+    let pLogin = document.querySelector('.login');
+    let btnSalvar = document.querySelector('#btn-salvar');
+    let btnVoltar = document.querySelector('#btn-voltar');
+    let senha = document.querySelector('#senha');
+    let confirmarSenha = document.querySelector("#confirmaSenha");
+    let msgErr = document.querySelector('.msg-err');
+
+    dadosUsuario = JSON.parse(dadosUsuario);
+    let id = dadosUsuario[0].id;
+    let nome = dadosUsuario[0].nome;
+    let email = dadosUsuario[0].email;
+    let login = dadosUsuario[0].login;
+    let isactive = dadosUsuario[0].isactive;
+
+    pLogin.textContent += dadosUsuario[0].login;
+
+    async function atualizarSenha(senha1, senha2) {
+        if (senha1 == senha2) {
+            await fetch(`${apiUrl}api/user/${id}?Nome=${nome}&Email=${email}&Login=${login}&Senha=${senha1}&IsActive=${isactive}`, { method: 'PUT' })
+                .then((res) => {
+                    return res.text();
+                }).then((data) => {
+                    console.log(data);
+                });
+            alert('Atualizado com sucesso!\nPor favor, faça login');
+            location.href = '../../';
+        }
+        else {
+            msgErr.textContent = 'As senhas não conferem';
+        }
+    }
+
+    btnSalvar.addEventListener('click', () => {
+        atualizarSenha(senha.value, confirmarSenha.value);
+    });
+
+    btnVoltar.addEventListener('click', () => {
+        location.href = '../../';
+    });
+}
+
+// SCRIPT PARA AS PÁGINAS INICIAIS DO JOGO
 if (document.body.classList.contains("inicialpage")) {
     audioFundo = document.querySelector("#audioFundo");
     if (!localStorage.getItem("volume") || !localStorage.getItem("isPaused")) {
@@ -153,10 +229,16 @@ if (document.body.classList.contains("inicialpage")) {
                 content.innerHTML = html;
 
                 let btnConfig = document.querySelector("#config-btn");
+                let btnLogout = document.querySelector("#logout-btn");
 
                 btnConfig.addEventListener("click", () => {
                     telaConfig();
                 });
+
+                btnLogout.addEventListener('click', () => {
+                    localStorage.removeItem('jogador');
+                    location.href = 'index.html';
+                })
 
                 // Botões do centro
                 let btnJogar = document.querySelector('#jogar-btn');
@@ -459,7 +541,34 @@ if (document.body.classList.contains("inicialpage")) {
             .then((html) => {
                 content.innerHTML = html;
 
+                const dadosUsuario = JSON.parse(localStorage.getItem('jogador'));
+
+                const form = document.querySelector('.form');
+                const nome = document.querySelector('#nome');
+                const email = document.querySelector('#email');
+                const login = document.querySelector('#login');
+                const senha = document.querySelector('#senha');
+
+                nome.value = dadosUsuario[0].nome;
+                email.value = dadosUsuario[0].email;
+                login.value = dadosUsuario[0].login;
+
                 let btnVoltar = document.querySelector("#voltar");
+
+                async function atualizar(id, nome, email, login, senha) {
+                    await fetch(`${apiUrl}api/user/${id}?Nome=${nome}&Email=${email}&Login=${login}&Senha=${senha}&IsActive=true`, { method: 'PUT' })
+                        .then((res) => {
+                            return res.text();
+                        }).then((data) => {
+                            console.log(data);
+                        });
+                    alert('Atualizado com sucesso!\n\nNota: a atualização será visível a partir do próximo login');
+                }
+
+                form.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    atualizar(dadosUsuario[0].id, nome.value, email.value, login.value, senha.value);
+                })
 
                 btnVoltar.addEventListener("click", () => {
                     inicial();
@@ -523,6 +632,9 @@ if (document.body.classList.contains("inicialpage")) {
 
 */
 if (document.body.classList.contains("page-jogo")) {
+    let audioFundo = document.querySelector('#audioFundo');
+    audioFundo.volume = JSON.parse(localStorage.getItem('volume'));
+
     const construct = async (html, funcoes) => {
         let content = document.querySelector('#content');
         await html().then((res) => {
@@ -533,11 +645,21 @@ if (document.body.classList.contains("page-jogo")) {
 
     function temas() {
         // temporário... aqui vai ser o 'get' dos temas
-        return [{ id: 1, nome: "Super Mario", img: "../../img/cachorro.jpeg", fundo: "../../img/onca.png" }];
+        return [
+            { id: 1, nome: "Super Mario", img: "../../TEMAS/mario/circleMario.png", fundo: "../../TEMAS/mario/fundo.png", placar: '../../TEMAS/mario/placar.png' },
+            { id: 2, nome: "Toy Story", img: "../../TEMAS/toystory/circleToystory.png", fundo: "../../TEMAS/toystory/fundo.png", placar: '../../TEMAS/toystory/placar.png' },
+            { id: 3, nome: "Selva", img: "../../TEMAS/selva/circleSelva.png", fundo: "../../TEMAS/selva/fundo.png", placar: '../../TEMAS/selva/placar.png' }
+        ];
     }
-    function skins() {
-        // temporário... aqui vai ser o 'get' das skins
-        return [{ id: 1, nome: "Super Mario", img: "../../img/cachorro.jpeg" }];
+    // temporário... aqui vai ser o 'get' das skins
+    function skins(idTema) {
+        if (idTema == 1) {
+            return [{ id: 1, img_cachorro: "../../TEMAS/mario/yoshi.png", img_onca: "../../TEMAS/mario/mario.png" }];
+        } else if (idTema == 2) {
+            return [{ id: 1, img_cachorro: "../../TEMAS/toystory/rex.png", img_onca: "../../TEMAS/toystory/woody.png" }];
+        } else if (idTema == 3) {
+            return [{ id: 1, img_cachorro: "../../TEMAS/selva/zebra.png", img_onca: "../../TEMAS/selva/leao.png" }];
+        }
     }
 
     async function escolhaPeca() {
@@ -584,7 +706,7 @@ if (document.body.classList.contains("page-jogo")) {
         objArr.forEach((key) => {
             temasStr += `
                 <div>
-                    <img data-fundo="${key.fundo}" data-id="${key.id}" class="border-2 circle tema" width="150px"
+                    <img data-placar="${key.placar}" data-fundo="${key.fundo}" data-id="${key.id}" class="border-2 circle tema" width="150px"
                         height="150px" src="${key.img}" alt="imgTema" />
                     <p class="text-center text-green">${key.nome}</p>
                 </div>
@@ -597,6 +719,7 @@ if (document.body.classList.contains("page-jogo")) {
             key.addEventListener('click', function () {
                 localStorage.setItem('fundo', this.getAttribute('data-fundo'));
                 localStorage.setItem('tema', this.getAttribute('data-id'));
+                localStorage.setItem('placar', this.getAttribute('data-placar'));
                 construct(escolhaSkin, funcoesSkin);
             });
         });
@@ -618,17 +741,26 @@ if (document.body.classList.contains("page-jogo")) {
             construct(escolhaTema, funcoesTema);
         });
 
-        let objArr = skins();
+        let objArr = skins(JSON.parse(localStorage.getItem('tema')));
         let skinsStr = "";
+        let peca = localStorage.getItem('peca');
 
         objArr.forEach((key) => {
-            skinsStr += `
+            if (peca == 'onca') {
+                skinsStr += `
                 <div>
-                    <img data-id="${key.id}" data-skin="${key.img}" class="border-2 circle tema" width="150px"
-                        height="150px" src="${key.img}" alt="imgTema" />
-                    <p class="text-center text-green">${key.nome}</p>
+                    <img data-id="${key.id}" data-skin="${key.img_onca}" class="border-2 circle tema" width="150px"
+                        height="150px" src="${key.img_onca}" alt="imgTema" />
                 </div>
             `
+            } else {
+                skinsStr += `
+                <div>
+                    <img data-id="${key.id}" data-skin="${key.img_cachorro}" class="border-2 circle tema" width="150px"
+                        height="150px" src="${key.img_cachorro}" alt="imgTema" />
+                </div>
+            `
+            }
         });
         flexContainer.innerHTML = skinsStr;
 

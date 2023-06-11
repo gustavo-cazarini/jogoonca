@@ -16,12 +16,6 @@ body {
     grid-row-gap: 0px;
 }
 
-/*
-.parent div {
-    border: 1px solid black;
-}
-*/
-
 .grid-time {
     grid-area: 1 / 1 / 2 / 2;
     display: flex;
@@ -42,6 +36,9 @@ body {
 }
 .grid-btn-diversao {
     grid-area: 5 / 2 / 6 / 3;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
 }
 .grid-diversao {
     grid-area: 2 / 1 / 4 / 2;
@@ -49,6 +46,20 @@ body {
 .grid-placar {
     grid-area: 4 / 1 / 6 / 2;
     position: relative;
+}
+/*
+
+    Buttons diversão
+*/
+.grid-btn-diversao button {
+    background-color: #bd820a;
+    border: none;
+    border-radius: 5px;
+    padding: 7px;
+    cursor: pointer;
+}
+.grid-btn-diversao button:hover {
+    background-color: #976808;
 }
 
 .tabuleiro-container {
@@ -210,6 +221,7 @@ body {
 
 .grid-anuncio .anuncio {
     max-width: 70%;
+    padding: 10px;
     background-color: #ffffffe1;
     max-height: 100%;
     margin-right: 20px;

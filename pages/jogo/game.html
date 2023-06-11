@@ -17,7 +17,9 @@
             </div>
         </div>
 
-        <div class="grid-diversao"></div>
+        <div class="grid-diversao">
+            <img style="max-width: 100%;" id="img-diversao" src="" alt="">
+        </div>
 
         <div class="grid-placar">
             <img class="tema-placar" src="./img/monkey.png" alt="" />
@@ -84,7 +86,10 @@
             </div>
         </div>
 
-        <div class="grid-btn-diversao"></div>
+        <div class="grid-btn-diversao">
+            <button id="display-gifs"><img src="./img/icons/smyle.png" alt="Gifs"></button>
+            <button id="display-audios"><img src="./img/icons/sound.png" alt="Audios"></button>
+        </div>
 
         <div class="grid-btn-grupo">
             <div class="container">
@@ -94,12 +99,125 @@
         </div>
 
         <div class="grid-anuncio">
-            <div class="anuncio"></div>
+            <div class="anuncio">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae velit tempore, officia saepe quo
+                dolorum repellendus in repellat assumenda necessitatibus culpa, ullam perferendis asperiores? Amet error
+                saepe provident aut voluptatibus.
+            </div>
         </div>
     </div>
 
     <script type="module" src="./js/main.js"></script>
-    <script></script>
+    <script>
+        let styles = document.createElement('style');
+        let fundo = localStorage.getItem('fundo');
+        let peca = localStorage.getItem('peca');
+        let skin = localStorage.getItem('skin');
+        let placar = localStorage.getItem('placar');
+
+        const btnGif = document.querySelector('#display-gifs');
+        const btnAudio = document.querySelector('#display-audios');
+        const imgDiversao = document.querySelector('#img-diversao');
+
+        document.querySelector('.tema-placar').src = placar;
+
+        let pecaSkin = peca == 'onca' ? `.piece-jaguar{background-image: url(${skin})}` : `.piece-dog{background-image: url(${skin})`;
+
+        styles.type = 'text/css';
+        styles.innerHTML = `
+            body {
+                background-image: url(${fundo});
+            }
+            ${pecaSkin}
+        `;
+        document.getElementsByTagName('head')[0].appendChild(styles);
+
+        let diversao_gifs = [];
+        let diversao_audios = [];
+        if (localStorage.getItem('tema') == 1) {
+            diversao_gifs = [
+                './diversao/mario/gifs/gif1.gif',
+                './diversao/mario/gifs/gif2.gif',
+                './diversao/mario/gifs/gif3.gif',
+                './diversao/mario/gifs/gif4.gif',
+                './diversao/mario/gifs/gif5.gif',
+                './diversao/mario/gifs/gif6.gif'
+            ];
+            diversao_audios = [
+                './diversao/mario/audios/marioaudio1.mp3',
+                './diversao/mario/audios/marioaudio2.mp3',
+                './diversao/mario/audios/marioaudio3.mp3',
+                './diversao/mario/audios/marioaudio4.mp3',
+                './diversao/mario/audios/marioaudio5.mp3',
+            ];
+        } else if (localStorage.getItem('tema') == 2) {
+            diversao_gifs = [
+                './diversao/toystory/gifs/gif1.gif',
+                './diversao/toystory/gifs/gif2.gif',
+                './diversao/toystory/gifs/gif3.gif',
+                './diversao/toystory/gifs/gif4.gif',
+                './diversao/toystory/gifs/gif5.gif'
+            ];
+            diversao_audios = [
+                './diversao/toystory/audios/audio1.mp3',
+                './diversao/toystory/audios/audio2.mp3',
+                './diversao/toystory/audios/audio3.mp3',
+                './diversao/toystory/audios/audio4.mp3',
+                './diversao/toystory/audios/audio5.mp3',
+            ];
+        } else if (localStorage.getItem('tema') == 3) {
+            diversao_gifs = [
+                './diversao/selvagem/gifs/gif1.gif',
+                './diversao/selvagem/gifs/gif2.gif',
+                './diversao/selvagem/gifs/gif3.gif',
+                './diversao/selvagem/gifs/gif4.gif',
+                './diversao/selvagem/gifs/gif5.gif'
+            ];
+            diversao_audios = [
+                './diversao/selvagem/audios/audio1.mp3',
+                './diversao/selvagem/audios/audio2.mp3',
+                './diversao/selvagem/audios/audio3.mp3',
+                './diversao/selvagem/audios/audio4.mp3'
+            ];
+        } else {
+            diversao_gifs = [
+                './diversao/chaves/gifs/gif1.gif',
+                './diversao/chaves/gifs/gif2.gif',
+                './diversao/chaves/gifs/gif3.gif',
+                './diversao/chaves/gifs/gif4.gif',
+                './diversao/chaves/gifs/gif5.gif'
+            ];
+            diversao_audios = [
+                './diversao/chaves/audios/audio1.mp3',
+                './diversao/chaves/audios/audio2.mp3',
+                './diversao/chaves/audios/audio3.mp3',
+                './diversao/chaves/audios/audio4.mp3',
+                './diversao/chaves/audios/audio5.mp3'
+            ];
+        }
+
+        function mostraGif() {
+            let random = Math.floor(Math.random() * diversao_gifs.length);
+            imgDiversao.src = diversao_gifs[random];
+            imgDiversao.style.display = 'block';
+            setTimeout(esconderGif, 7000);
+        }
+
+        function esconderGif() {
+            imgDiversao.style.display = 'none';
+        }
+
+        btnGif.addEventListener('click', mostraGif);
+
+        function mostraAudio() {
+            let random = Math.floor(Math.random() * diversao_audios.length);
+            let efeito = new Audio(diversao_audios[random]);
+            efeito.volume = .5;
+            efeito.play();
+        }
+
+        btnAudio.addEventListener('click', mostraAudio);
+    </script>
 </body>
 
 </html>
