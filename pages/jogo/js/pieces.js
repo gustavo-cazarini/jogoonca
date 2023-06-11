@@ -236,7 +236,7 @@ async function sendTabletop(aux) {
     let serialized = JSON.stringify(cellArray);
     console.log(serialized);
     
-    const response = await fetch('https://adugo-game-backend-01.onrender.com/api/send-move', {
+    const response = await fetch('http://adugo-game-backend-01.onrender.com/api/send-move', {
         method: 'POST',
         headers: {
             'Allow-Control-Allow-Origin': '*',
