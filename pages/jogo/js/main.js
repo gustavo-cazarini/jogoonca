@@ -157,7 +157,7 @@ document.querySelectorAll(".piece-jaguar").forEach((element) => {
 // Função para verificar novo movimento
 function checkForNewMove() {
     console.log('Verificando novo movimento...');
-    fetch('http://adugo-game-backend-01.onrender.com/api/check', {
+    fetch('https://adugo-game-backend-01.onrender.com/api/check', {
         headers: {
             'Content-Type': 'application/json',
             'Allow-Control-Allow-Origin': '*',
