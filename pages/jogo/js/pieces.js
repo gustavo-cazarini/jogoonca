@@ -223,7 +223,6 @@ function jaguarEat(jaguarPiece,cellAtual) {
 }
 
 async function sendTabletop(aux) {
-    checkForNewMove();
     // Mapeia o NodeList para um array de objetos
     let cellArray = aux.map((cell, index) => {
         return {
