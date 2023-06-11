@@ -23,6 +23,7 @@ function isPiece(cell) {
 
 function selectPiece(piece) {
     if (isJaguar(piece)) {
+        //TO DO: Implementar som novamente, estava dando erro na Cloud e parando a execução
         //jaguarSound.play();
     }
     modifySelectedPiece(piece);
