@@ -23,7 +23,7 @@ function isPiece(cell) {
 
 function selectPiece(piece) {
     if (isJaguar(piece)) {
-        jaguarSound.play();
+        //jaguarSound.play();
     }
     modifySelectedPiece(piece);
 }
