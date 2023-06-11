@@ -8,7 +8,6 @@ function getCoordinates(cell) {
 }
 
 function getCell(x, y) {
-    console.log("getCell()");
     return Array.from(cells).find(
         (cell) =>
             parseInt(cell.getAttribute("data-x")) === x &&

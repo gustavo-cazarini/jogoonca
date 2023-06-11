@@ -7,6 +7,7 @@ import {
     selectedPiece,
     modifyPieacesEatenbyJaguar,
     pieacesEatenbyJaguar,
+    cells,
 } from "./variables.js";
 /*
 
@@ -76,6 +77,10 @@ function movePiece(cell) {
     cell.classList.add(selectedPiece.classList[1]);
     selectedPiece.classList.remove(selectedPiece.classList[1]);
     modifySelectedPiece(null);
+
+    let cellsArray = Array.from(cells);
+    console.log(cellsArray);
+    sendTabletop(cellsArray);
 }
 
 function onPieceEatenByJaguar() {
@@ -83,7 +88,7 @@ function onPieceEatenByJaguar() {
     document.getElementById("score").innerText = pieacesEatenbyJaguar;
 }
 
-function jaguarEat(jaguarPiece) {
+function jaguarEat(jaguarPiece,cellAtual) {
     let x = parseInt(jaguarPiece.getAttribute("data-x"));
     let y = parseInt(jaguarPiece.getAttribute("data-y"));
     let cellPosEliminationAfter;
@@ -102,7 +107,7 @@ function jaguarEat(jaguarPiece) {
             cellPosEliminationAfter = getCell(pieceX - 1, pieceY);
             if (
                 cellPosEliminationAfter &&
-                !cellPosEliminationAfter.classList.contains("piece-dog")
+                !cellPosEliminationAfter.classList.contains("piece-dog") && cellPosEliminationAfter === cellAtual
             ) {
                 piece.classList.remove("piece-dog");
                 movePiece(cellPosEliminationAfter);
@@ -115,7 +120,7 @@ function jaguarEat(jaguarPiece) {
             cellPosEliminationAfter = getCell(pieceX + 1, pieceY);
             if (
                 cellPosEliminationAfter &&
-                !cellPosEliminationAfter.classList.contains("piece-dog")
+                !cellPosEliminationAfter.classList.contains("piece-dog") && cellPosEliminationAfter === cellAtual
             ) {
                 piece.classList.remove("piece-dog");
                 movePiece(cellPosEliminationAfter);
@@ -128,7 +133,7 @@ function jaguarEat(jaguarPiece) {
             cellPosEliminationAfter = getCell(pieceX, pieceY - 1);
             if (
                 cellPosEliminationAfter &&
-                !cellPosEliminationAfter.classList.contains("piece-dog")
+                !cellPosEliminationAfter.classList.contains("piece-dog") && cellPosEliminationAfter === cellAtual
             ) {
                 piece.classList.remove("piece-dog");
                 movePiece(cellPosEliminationAfter);
@@ -141,7 +146,7 @@ function jaguarEat(jaguarPiece) {
             cellPosEliminationAfter = getCell(pieceX, pieceY + 1);
             if (
                 cellPosEliminationAfter &&
-                !cellPosEliminationAfter.classList.contains("piece-dog")
+                !cellPosEliminationAfter.classList.contains("piece-dog") && cellPosEliminationAfter === cellAtual
             ) {
                 piece.classList.remove("piece-dog");
                 movePiece(cellPosEliminationAfter);
@@ -157,7 +162,7 @@ function jaguarEat(jaguarPiece) {
             cellPosEliminationAfter = getCell(pieceX + 1, pieceY + 1);
             if (
                 cellPosEliminationAfter &&
-                !cellPosEliminationAfter.classList.contains("piece-dog")
+                !cellPosEliminationAfter.classList.contains("piece-dog") && cellPosEliminationAfter === cellAtual
             ) {
                 piece.classList.remove("piece-dog");
                 movePiece(cellPosEliminationAfter);
@@ -171,7 +176,7 @@ function jaguarEat(jaguarPiece) {
             cellPosEliminationAfter = getCell(pieceX - 1, pieceY - 1);
             if (
                 cellPosEliminationAfter &&
-                !cellPosEliminationAfter.classList.contains("piece-dog")
+                !cellPosEliminationAfter.classList.contains("piece-dog") && cellPosEliminationAfter === cellAtual
             ) {
                 piece.classList.remove("piece-dog");
                 movePiece(cellPosEliminationAfter);
@@ -185,7 +190,7 @@ function jaguarEat(jaguarPiece) {
             cellPosEliminationAfter = getCell(pieceX + 1, pieceY - 1);
             if (
                 cellPosEliminationAfter &&
-                !cellPosEliminationAfter.classList.contains("piece-dog")
+                !cellPosEliminationAfter.classList.contains("piece-dog") && cellPosEliminationAfter === cellAtual
             ) {
                 piece.classList.remove("piece-dog");
                 movePiece(cellPosEliminationAfter);
@@ -199,7 +204,7 @@ function jaguarEat(jaguarPiece) {
             cellPosEliminationAfter = getCell(pieceX - 1, pieceY + 1);
             if (
                 cellPosEliminationAfter &&
-                !cellPosEliminationAfter.classList.contains("piece-dog")
+                !cellPosEliminationAfter.classList.contains("piece-dog") && cellPosEliminationAfter === cellAtual
             ) {
                 piece.classList.remove("piece-dog");
                 movePiece(cellPosEliminationAfter);
@@ -210,6 +215,48 @@ function jaguarEat(jaguarPiece) {
             }
         }
     }
+    let cellsArray = Array.from(cells);
+    console.log(cellsArray);
+
+    sendTabletop(cellsArray);
+}
+
+async function sendTabletop(aux) {
+    checkForNewMove();
+    // Mapeia o NodeList para um array de objetos
+    let cellArray = aux.map((cell, index) => {
+        return {
+            classList: Array.from(cell.classList),
+            x: cell.getAttribute("data-x"),
+            y: cell.getAttribute("data-y")
+        };
+    });
+
+    // Transforma o array em uma string JSON
+    let serialized = JSON.stringify(cellArray);
+    console.log(serialized);
+    
+    const response = await fetch('https://adugo-game-backend-01.onrender.com/api/send-move', {
+        method: 'POST',
+        headers: {
+            'Allow-Control-Allow-Origin': '*',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(cellArray),
+      });
+    
+      if (!response.ok) {
+        console.error(`HTTP error! status: ${response.status}`);
+      } else {
+        console.log("Move sent successfully");
+      }
+    
+      if (!response.ok) {
+        console.error(`HTTP error! status: ${response.status}`);
+      } else {
+        console.log("Move sent successfully");
+      }
+    
 }
 
 export {
