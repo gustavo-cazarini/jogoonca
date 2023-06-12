@@ -796,7 +796,7 @@ if (document.body.classList.contains("page-jogo")) {
     }
 
     async function escolhaPeca() {
-        return await fetch("../jogo/escolha_peca.html").then((res) => {
+        return await fetch("../pages/jogo/escolha_peca.html").then((res) => {
             return res.text();
         });
     }
