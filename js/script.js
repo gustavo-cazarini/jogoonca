@@ -1,4 +1,4 @@
-const apiUrl = 'https://adugo-game-backend-01.onrender.com/';
+const apiUrl = "https://adugo-game-backend-01.onrender.com/";
 //const apiUrl = 'http://44.204.47.153:3333/';
 
 if (document.body.classList.contains("indexpage")) {
@@ -48,71 +48,83 @@ if (document.body.classList.contains("indexpage")) {
                 btnVoltar.addEventListener("click", () => {
                     index();
                 });
-    
+
                 async function cadastro(nome, email, login, senha) {
                     const data = {
                         nome: nome,
                         email: email,
                         login: login,
-                        senha: senha
+                        senha: senha,
                     };
                     try {
-                        const response = await fetch(`${apiUrl}api/register?&Nome=${nome}&IsActive=${true}&Email=${email}&Login=${login}&Senha=${senha}`, {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json',
-                                'Access-Control-Allow-Origin': '*'
-                            },
-                            body: JSON.stringify(data)
-                        });
+                        const response = await fetch(
+                            `${apiUrl}api/register?&Nome=${nome}&IsActive=${true}&Email=${email}&Login=${login}&Senha=${senha}`,
+                            {
+                                method: "POST",
+                                headers: {
+                                    "Content-Type": "application/json",
+                                    "Access-Control-Allow-Origin": "*",
+                                },
+                                body: JSON.stringify(data),
+                            }
+                        );
                         console.log(JSON.stringify(data));
-    
+
                         if (response.ok) {
-                            alert('Cadastrado com sucesso!\nPor favor, faça o login.');
-                            location.href = '../index.html';
+                            alert(
+                                "Cadastrado com sucesso!\nPor favor, faça o login."
+                            );
+                            location.href = "../index.html";
                         } else {
-                            console.error('Erro ao cadastrar:', response.status);
+                            console.error(
+                                "Erro ao cadastrar:",
+                                response.status
+                            );
                         }
                     } catch (error) {
-                        console.error('Erro ao fazer a requisição:', error);
+                        console.error("Erro ao fazer a requisição:", error);
                     }
                 }
-    
+
                 btnCad.addEventListener("click", () => {
-                    let nome = document.querySelector('#nome').value;
-                    let email = document.querySelector('#email').value;
-                    let login = document.querySelector('#login').value;
-                    let senha = document.querySelector('#senha').value;
+                    let nome = document.querySelector("#nome").value;
+                    let email = document.querySelector("#email").value;
+                    let login = document.querySelector("#login").value;
+                    let senha = document.querySelector("#senha").value;
                     cadastro(nome, email, login, senha);
                 });
             })
             .catch((err) => {
                 console.warn("Algo deu errado!", err);
             });
-    }    
+    }
 
     async function login(log, senha) {
         const options = {
-            method: 'POST',
+            method: "POST",
             headers: {
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*'
+                "Content-Type": "application/json",
+                "Access-Control-Allow-Origin": "*",
             },
-            body: JSON.stringify({})
+            body: JSON.stringify({}),
         };
 
         await fetch(`${apiUrl}api/login?Login=${log}&Senha=${senha}`, options)
             .then((res) => {
                 return res.json();
-            }).then((data) => {
+            })
+            .then((data) => {
                 if (data.status === "success") {
-                    localStorage.setItem('jogador', JSON.stringify({
-                        login: log,
-                        id: data.user_id  // Salvando o ID do usuário no localStorage
-                    }));
-                    location.href = './inicial.html';
+                    localStorage.setItem(
+                        "jogador",
+                        JSON.stringify({
+                            login: log,
+                            id: data.user_id, // Salvando o ID do usuário no localStorage
+                        })
+                    );
+                    location.href = "./inicial.html";
                 } else {
-                    msgErr.textContent = 'Usuário ou Senha incorretos';
+                    msgErr.textContent = "Usuário ou Senha incorretos";
                 }
             });
     }
@@ -124,44 +136,49 @@ if (document.body.classList.contains("indexpage")) {
             })
             .then((html) => {
                 content.innerHTML = html;
-    
+
                 let btnVoltar = document.getElementById("btn-voltar");
                 let btnEntrar = document.querySelector("#btn-entrar");
                 let linkEsqueceu = document.querySelector("#link-esqueceu");
-                let inpLogin = document.querySelector('#login');
-                let inpSenha = document.querySelector('#senha');
-                let msgErr = document.querySelector('.msg-err');
-    
+                let inpLogin = document.querySelector("#login");
+                let inpSenha = document.querySelector("#senha");
+                let msgErr = document.querySelector(".msg-err");
+
                 btnVoltar.addEventListener("click", () => {
                     index();
                 });
-    
+
                 async function login(log, senha) {
                     const options = {
-                        method: 'POST',
+                        method: "POST",
                         headers: {
-                            'Content-Type': 'application/json'
+                            "Content-Type": "application/json",
                         },
-                        body: JSON.stringify({})
+                        body: JSON.stringify({}),
                     };
-    
-                    await fetch(`${apiUrl}api/login?Login=${log}&Senha=${senha}`, options)
+
+                    await fetch(
+                        `${apiUrl}api/login?Login=${log}&Senha=${senha}`,
+                        options
+                    )
                         .then((res) => {
                             return res.json();
-                        }).then((data) => {
+                        })
+                        .then((data) => {
                             if (data.status === "success") {
-                                localStorage.setItem('jogador', log);
-                                location.href = './inicial.html';
+                                localStorage.setItem("jogador", log);
+                                location.href = "./inicial.html";
                             } else {
-                                msgErr.textContent = 'Usuário ou Senha incorretos';
+                                msgErr.textContent =
+                                    "Usuário ou Senha incorretos";
                             }
                         });
                 }
-    
+
                 btnEntrar.addEventListener("click", () => {
                     login(inpLogin.value, inpSenha.value);
                 });
-    
+
                 linkEsqueceu.addEventListener("click", () => {
                     telaEsqueceu();
                 });
@@ -170,8 +187,6 @@ if (document.body.classList.contains("indexpage")) {
                 console.warn("Algo deu errado!", err);
             });
     }
-    
-    
 
     function telaEsqueceu() {
         fetch("../htmlparts/esqueceu_senha.html")
@@ -206,10 +221,14 @@ if (document.body.classList.contains("indexpage")) {
             .then((html) => {
                 console.log(html);
                 if (html?.length) {
-                    localStorage.setItem('recuperar_senha', JSON.stringify(html));
-                    location.href = './pages/recuperarSenha';
+                    localStorage.setItem(
+                        "recuperar_senha",
+                        JSON.stringify(html)
+                    );
+                    location.href = "./pages/recuperarSenha";
                 } else {
-                    document.querySelector('.msg-err').textContent = 'E-Mail não encontrado';
+                    document.querySelector(".msg-err").textContent =
+                        "E-Mail não encontrado";
                 }
             });
     }
@@ -220,13 +239,13 @@ if (document.body.classList.contains("indexpage")) {
     REDEFINIR SENHA
 */
 if (document.body.classList.contains("redefinirSenha")) {
-    let dadosUsuario = localStorage.getItem('recuperar_senha');
-    let pLogin = document.querySelector('.login');
-    let btnSalvar = document.querySelector('#btn-salvar');
-    let btnVoltar = document.querySelector('#btn-voltar');
-    let senha = document.querySelector('#senha');
+    let dadosUsuario = localStorage.getItem("recuperar_senha");
+    let pLogin = document.querySelector(".login");
+    let btnSalvar = document.querySelector("#btn-salvar");
+    let btnVoltar = document.querySelector("#btn-voltar");
+    let senha = document.querySelector("#senha");
     let confirmarSenha = document.querySelector("#confirmaSenha");
-    let msgErr = document.querySelector('.msg-err');
+    let msgErr = document.querySelector(".msg-err");
 
     dadosUsuario = JSON.parse(dadosUsuario);
     let id = dadosUsuario[0].id;
@@ -239,26 +258,29 @@ if (document.body.classList.contains("redefinirSenha")) {
 
     async function atualizarSenha(senha1, senha2) {
         if (senha1 == senha2) {
-            await fetch(`${apiUrl}api/user/${id}?Nome=${nome}&Email=${email}&Login=${login}&Senha=${senha1}&IsActive=${isactive}`, { method: 'PUT' })
+            await fetch(
+                `${apiUrl}api/user/${id}?Nome=${nome}&Email=${email}&Login=${login}&Senha=${senha1}&IsActive=${isactive}`,
+                { method: "PUT" }
+            )
                 .then((res) => {
                     return res.text();
-                }).then((data) => {
+                })
+                .then((data) => {
                     console.log(data);
                 });
-            alert('Atualizado com sucesso!\nPor favor, faça login');
-            location.href = '../../';
-        }
-        else {
-            msgErr.textContent = 'As senhas não conferem';
+            alert("Atualizado com sucesso!\nPor favor, faça login");
+            location.href = "../../";
+        } else {
+            msgErr.textContent = "As senhas não conferem";
         }
     }
 
-    btnSalvar.addEventListener('click', () => {
+    btnSalvar.addEventListener("click", () => {
         atualizarSenha(senha.value, confirmarSenha.value);
     });
 
-    btnVoltar.addEventListener('click', () => {
-        location.href = '../../';
+    btnVoltar.addEventListener("click", () => {
+        location.href = "../../";
     });
 }
 
@@ -291,17 +313,17 @@ if (document.body.classList.contains("inicialpage")) {
                     telaConfig();
                 });
 
-                btnLogout.addEventListener('click', () => {
-                    localStorage.removeItem('jogador');
-                    location.href = 'index.html';
-                })
+                btnLogout.addEventListener("click", () => {
+                    localStorage.removeItem("jogador");
+                    location.href = "index.html";
+                });
 
                 // Botões do centro
-                let btnJogar = document.querySelector('#jogar-btn');
+                let btnJogar = document.querySelector("#jogar-btn");
                 let btnComoJogar = document.querySelector("#comoJogar-btn");
 
-                btnJogar.addEventListener('click', () => {
-                    location.href = './pages/jogo';
+                btnJogar.addEventListener("click", () => {
+                    location.href = "./pages/jogo";
                 });
 
                 btnComoJogar.addEventListener("click", () => {
@@ -531,23 +553,28 @@ if (document.body.classList.contains("inicialpage")) {
                         textos[indiceAtual];
 
                     if (indiceAtual === 4) {
-                        document.getElementById("continuar").textContent =
-                            "MENU";
+                        document.getElementById("continuar").style.display =
+                            "none"; /*Novo*/
                         document.querySelector(
-                            ".botao-containerMenu"
-                        ).style.marginLeft = "800px";
+                            ".botao-RetornarMenu"
+                        ).style.marginBottom = "-290px"; /*Novo*/
                     } else {
-                        document.getElementById("continuar").textContent =
-                            "CONTINUAR";
                         document.querySelector(
                             ".botao-containerMenu"
-                        ).style.marginLeft = "750px";
+                        ).style.marginLeft = "750px"; /*Novo*/
+                        document.getElementById("continuar").style.display =
+                            "block"; /*Novo*/
+                        document.querySelector(
+                            ".botao-RetornarMenu"
+                        ).style.marginBottom = "-450px"; /*Novo*/
                     }
 
                     if (indiceAtual === 0) {
-                        document.getElementById("botaoVoltar").disabled = true;
+                        document.getElementById("botaoVoltar").style.display =
+                            "none"; /*Novo*/
                     } else {
-                        document.getElementById("botaoVoltar").disabled = false;
+                        document.getElementById("botaoVoltar").style.display =
+                            "block"; /*Novo*/
                     }
                 }
 
@@ -597,13 +624,15 @@ if (document.body.classList.contains("inicialpage")) {
             .then((html) => {
                 content.innerHTML = html;
 
-                const dadosUsuario = JSON.parse(localStorage.getItem('jogador'));
+                const dadosUsuario = JSON.parse(
+                    localStorage.getItem("jogador")
+                );
 
-                const form = document.querySelector('.form');
-                const nome = document.querySelector('#nome');
-                const email = document.querySelector('#email');
-                const login = document.querySelector('#login');
-                const senha = document.querySelector('#senha');
+                const form = document.querySelector(".form");
+                const nome = document.querySelector("#nome");
+                const email = document.querySelector("#email");
+                const login = document.querySelector("#login");
+                const senha = document.querySelector("#senha");
 
                 nome.value = dadosUsuario[0].nome;
                 email.value = dadosUsuario[0].email;
@@ -612,19 +641,31 @@ if (document.body.classList.contains("inicialpage")) {
                 let btnVoltar = document.querySelector("#voltar");
 
                 async function atualizar(id, nome, email, login, senha) {
-                    await fetch(`${apiUrl}api/user/${id}?Nome=${nome}&Email=${email}&Login=${login}&Senha=${senha}&IsActive=true`, { method: 'PUT' })
+                    await fetch(
+                        `${apiUrl}api/user/${id}?Nome=${nome}&Email=${email}&Login=${login}&Senha=${senha}&IsActive=true`,
+                        { method: "PUT" }
+                    )
                         .then((res) => {
                             return res.text();
-                        }).then((data) => {
+                        })
+                        .then((data) => {
                             console.log(data);
                         });
-                    alert('Atualizado com sucesso!\n\nNota: a atualização será visível a partir do próximo login');
+                    alert(
+                        "Atualizado com sucesso!\n\nNota: a atualização será visível a partir do próximo login"
+                    );
                 }
 
-                form.addEventListener('submit', (e) => {
+                form.addEventListener("submit", (e) => {
                     e.preventDefault();
-                    atualizar(dadosUsuario[0].id, nome.value, email.value, login.value, senha.value);
-                })
+                    atualizar(
+                        dadosUsuario[0].id,
+                        nome.value,
+                        email.value,
+                        login.value,
+                        senha.value
+                    );
+                });
 
                 btnVoltar.addEventListener("click", () => {
                     inicial();
@@ -688,72 +729,105 @@ if (document.body.classList.contains("inicialpage")) {
 
 */
 if (document.body.classList.contains("page-jogo")) {
-    let audioFundo = document.querySelector('#audioFundo');
-    audioFundo.volume = JSON.parse(localStorage.getItem('volume'));
+    let audioFundo = document.querySelector("#audioFundo");
+    audioFundo.volume = JSON.parse(localStorage.getItem("volume"));
 
     const construct = async (html, funcoes) => {
-        let content = document.querySelector('#content');
+        let content = document.querySelector("#content");
         await html().then((res) => {
             content.innerHTML = res;
             funcoes();
         });
-    }
+    };
 
     function temas() {
         // temporário... aqui vai ser o 'get' dos temas
         return [
-            { id: 1, nome: "Super Mario", img: "../../TEMAS/mario/circleMario.png", fundo: "../../TEMAS/mario/fundo.png", placar: '../../TEMAS/mario/placar.png' },
-            { id: 2, nome: "Toy Story", img: "../../TEMAS/toystory/circleToystory.png", fundo: "../../TEMAS/toystory/fundo.png", placar: '../../TEMAS/toystory/placar.png' },
-            { id: 3, nome: "Selva", img: "../../TEMAS/selva/circleSelva.png", fundo: "../../TEMAS/selva/fundo.png", placar: '../../TEMAS/selva/placar.png' }
+            {
+                id: 1,
+                nome: "Super Mario",
+                img: "../../TEMAS/mario/circleMario.png",
+                fundo: "../../TEMAS/mario/fundo.png",
+                placar: "../../TEMAS/mario/placar.png",
+            },
+            {
+                id: 2,
+                nome: "Toy Story",
+                img: "../../TEMAS/toystory/circleToystory.png",
+                fundo: "../../TEMAS/toystory/fundo.png",
+                placar: "../../TEMAS/toystory/placar.png",
+            },
+            {
+                id: 3,
+                nome: "Selva",
+                img: "../../TEMAS/selva/circleSelva.png",
+                fundo: "../../TEMAS/selva/fundo.png",
+                placar: "../../TEMAS/selva/placar.png",
+            },
         ];
     }
     // temporário... aqui vai ser o 'get' das skins
     function skins(idTema) {
         if (idTema == 1) {
-            return [{ id: 1, img_cachorro: "../../TEMAS/mario/yoshi.png", img_onca: "../../TEMAS/mario/mario.png" }];
+            return [
+                {
+                    id: 1,
+                    img_cachorro: "../../TEMAS/mario/yoshi.png",
+                    img_onca: "../../TEMAS/mario/mario.png",
+                },
+            ];
         } else if (idTema == 2) {
-            return [{ id: 1, img_cachorro: "../../TEMAS/toystory/rex.png", img_onca: "../../TEMAS/toystory/woody.png" }];
+            return [
+                {
+                    id: 1,
+                    img_cachorro: "../../TEMAS/toystory/rex.png",
+                    img_onca: "../../TEMAS/toystory/woody.png",
+                },
+            ];
         } else if (idTema == 3) {
-            return [{ id: 1, img_cachorro: "../../TEMAS/selva/zebra.png", img_onca: "../../TEMAS/selva/leao.png" }];
+            return [
+                {
+                    id: 1,
+                    img_cachorro: "../../TEMAS/selva/zebra.png",
+                    img_onca: "../../TEMAS/selva/leao.png",
+                },
+            ];
         }
     }
 
     async function escolhaPeca() {
-        return await fetch('./escolha_peca.html')
-            .then((res) => {
-                return res.text();
-            });
+        return await fetch("./escolha_peca.html").then((res) => {
+            return res.text();
+        });
     }
 
     function funcoesPeca() {
-        let btnVoltar = document.querySelector('#btn-voltar');
-        let pecas = document.querySelectorAll('.peca');
+        let btnVoltar = document.querySelector("#btn-voltar");
+        let pecas = document.querySelectorAll(".peca");
 
         pecas.forEach((peca) => {
-            peca.addEventListener('click', function () {
-                localStorage.setItem("peca", this.getAttribute('data-peca'));
+            peca.addEventListener("click", function () {
+                localStorage.setItem("peca", this.getAttribute("data-peca"));
                 construct(escolhaTema, funcoesTema);
-                
             });
         });
 
-        btnVoltar.addEventListener('click', () => {
-            location.href = '../../inicial.html';
+        btnVoltar.addEventListener("click", () => {
+            location.href = "../../inicial.html";
         });
     }
 
     async function escolhaTema() {
-        return await fetch('./escolha_tema.html')
-            .then((res) => {
-                return res.text();
-            });
+        return await fetch("./escolha_tema.html").then((res) => {
+            return res.text();
+        });
     }
 
     function funcoesTema() {
-        let btnVoltar = document.querySelector('#btn-voltar');
-        let flexContainer = document.querySelector('.d-flex');
+        let btnVoltar = document.querySelector("#btn-voltar");
+        let flexContainer = document.querySelector(".d-flex");
 
-        btnVoltar.addEventListener('click', () => {
+        btnVoltar.addEventListener("click", () => {
             construct(escolhaPeca, funcoesPeca);
         });
 
@@ -767,86 +841,89 @@ if (document.body.classList.contains("page-jogo")) {
                         height="150px" src="${key.img}" alt="imgTema" />
                     <p class="text-center text-green">${key.nome}</p>
                 </div>
-            `
+            `;
         });
         flexContainer.innerHTML = temasStr;
 
-        let arrTemas = document.querySelectorAll('.tema');
+        let arrTemas = document.querySelectorAll(".tema");
         arrTemas.forEach((key) => {
-            key.addEventListener('click', function () {
-                localStorage.setItem('fundo', this.getAttribute('data-fundo'));
-                localStorage.setItem('tema', this.getAttribute('data-id'));
-                localStorage.setItem('placar', this.getAttribute('data-placar'));
+            key.addEventListener("click", function () {
+                localStorage.setItem("fundo", this.getAttribute("data-fundo"));
+                localStorage.setItem("tema", this.getAttribute("data-id"));
+                localStorage.setItem(
+                    "placar",
+                    this.getAttribute("data-placar")
+                );
                 construct(escolhaSkin, funcoesSkin);
             });
         });
     }
 
     async function escolhaSkin() {
-        return await fetch('./escolha_skin.html')
-            .then((res) => {
-                return res.text();
-            });
+        return await fetch("./escolha_skin.html").then((res) => {
+            return res.text();
+        });
     }
 
     function funcoesSkin() {
-        document.querySelector('html').style.backgroundImage = `url(${localStorage.getItem('fundo')})`;
-        let btnVoltar = document.querySelector('#btn-voltar');
-        let flexContainer = document.querySelector('.d-flex');
+        document.querySelector(
+            "html"
+        ).style.backgroundImage = `url(${localStorage.getItem("fundo")})`;
+        let btnVoltar = document.querySelector("#btn-voltar");
+        let flexContainer = document.querySelector(".d-flex");
 
-        btnVoltar.addEventListener('click', () => {
+        btnVoltar.addEventListener("click", () => {
             construct(escolhaTema, funcoesTema);
         });
 
-        let objArr = skins(JSON.parse(localStorage.getItem('tema')));
+        let objArr = skins(JSON.parse(localStorage.getItem("tema")));
         let skinsStr = "";
-        let peca = localStorage.getItem('peca');
+        let peca = localStorage.getItem("peca");
 
         objArr.forEach((key) => {
-            if (peca == 'onca') {
+            if (peca == "onca") {
                 skinsStr += `
                 <div>
                     <img data-id="${key.id}" data-skin="${key.img_onca}" class="border-2 circle tema" width="150px"
                         height="150px" src="${key.img_onca}" alt="imgTema" />
                 </div>
-            `
+            `;
             } else {
                 skinsStr += `
                 <div>
                     <img data-id="${key.id}" data-skin="${key.img_cachorro}" class="border-2 circle tema" width="150px"
                         height="150px" src="${key.img_cachorro}" alt="imgTema" />
                 </div>
-            `
+            `;
             }
         });
         flexContainer.innerHTML = skinsStr;
 
-        let arrSkins = document.querySelectorAll('.tema');
+        let arrSkins = document.querySelectorAll(".tema");
         arrSkins.forEach((key) => {
-            key.addEventListener('click', function () {
-                localStorage.setItem('skin', this.getAttribute('data-skin'));
-                localStorage.setItem('idSkin', this.getAttribute('data-id'));
+            key.addEventListener("click", function () {
+                localStorage.setItem("skin", this.getAttribute("data-skin"));
+                localStorage.setItem("idSkin", this.getAttribute("data-id"));
                 construct(esperaJogador, funcoesEspera);
             });
         });
     }
 
     async function esperaJogador() {
-        return await fetch('./espera_jogador.html')
-            .then((res) => {
-                return res.text();
-            });
+        return await fetch("./espera_jogador.html").then((res) => {
+            return res.text();
+        });
     }
 
     function funcoesEspera() {
-        let btnVoltar = document.querySelector('#btn-voltar');
+        let btnVoltar = document.querySelector("#btn-voltar");
 
-        btnVoltar.addEventListener('click', () => {
+        btnVoltar.addEventListener("click", () => {
             construct(escolhaSkin, funcoesSkin);
         });
 
         setTimeout(() => {
-            location.href = './game.html';
+            location.href = "./game.html";
         }, 10000);
     }
 

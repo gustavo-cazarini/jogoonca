@@ -47,13 +47,14 @@
             color: #000000;
         }
 
+        /*Novo*/
         .retangulo-texto {
             background-color: rgba(255, 255, 255, 0.815);
             border-radius: 20px;
             padding: 10px;
             display: inline-block;
             width: 350px; /* Ajuste a largura conforme necessário */
-            height: 150px; /* Ajuste a altura conforme necessário */
+            height: 170px; /* Ajuste a altura conforme necessário */
             margin-left: 30px;
         }
 
@@ -86,9 +87,20 @@
 
         /*Botão Menu / continuar*/
 
+        /*Novo*/
         .botao-containerMenu {
             position: absolute;
-            margin-bottom: -300px;
+            margin-bottom: -290px;
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.815);
+            border-radius: 20px;
+        }
+
+        /*novo*/
+        .botao-RetornarMenu {
+            position: absolute;
+            margin-bottom: -450px;
+            margin-left: 660px;
             padding: 10px;
             background-color: rgba(255, 255, 255, 0.815);
             border-radius: 20px;
@@ -111,17 +123,15 @@
                 <p class="text" id="texto"></p>
             </div>
         </div>
-        <div class="botao-containerVoltar">
-            <button class="voltar" type="#" id="botaoVoltar">VOLTAR</button>
+        <div class="botao-containerVoltar" id="botaoVoltar">
+            <button class="voltar" type="#">VOLTAR</button>
         </div>
-        <div class="">
-            <button class="voltar" type="#" id="voltar">
-                Retornar ao Inicio
-            </button>
+        <div class="botao-RetornarMenu" id="voltar">
+            <button class="voltar" type="#">RETORNAR AO MENU</button>
         </div>
 
-        <div class="botao-containerMenu">
-            <button class="menu" id="continuar">CONTINUAR</button>
+        <div class="botao-containerMenu" id="continuar">
+            <button class="menu">CONTINUAR</button>
         </div>
     </div>
 </div>
