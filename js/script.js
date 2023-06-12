@@ -819,7 +819,7 @@ if (document.body.classList.contains("page-jogo")) {
     }
 
     async function escolhaTema() {
-        return await fetch("./escolha_tema.html").then((res) => {
+        return await fetch("../pages/jogo/escolha_tema.html").then((res) => {
             return res.text();
         });
     }
@@ -861,7 +861,7 @@ if (document.body.classList.contains("page-jogo")) {
     }
 
     async function escolhaSkin() {
-        return await fetch("./escolha_skin.html").then((res) => {
+        return await fetch("../pages/jogo/escolha_skin.html").then((res) => {
             return res.text();
         });
     }
