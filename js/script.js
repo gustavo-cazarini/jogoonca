@@ -1,4 +1,4 @@
-const apiUrl = 'http://localhost:3333/';
+const apiUrl = 'https://adugo-game-backend-01.onrender.com/';
 
 if (document.body.classList.contains("indexpage")) {
     const index = () => {
@@ -47,17 +47,36 @@ if (document.body.classList.contains("indexpage")) {
                 btnVoltar.addEventListener("click", () => {
                     index();
                 });
-
+    
                 async function cadastro(nome, email, login, senha) {
-                    let ret = await fetch(`${apiUrl}api/user?&Nome=${nome}&IsActive=true&Email=${email}&Login=${login}&Senha=${senha}`, { method: 'POST' }).then((res) => {
-                        return res.status;
-                    });
-                    if (ret == 201) {
-                        alert('Cadastrado com sucesso!\nPor favor faça Login');
-                        location.href = '../index.html';
+                    const data = {
+                        nome: nome,
+                        email: email,
+                        login: login,
+                        senha: senha
+                    };
+                    try {
+                        const response = await fetch(`${apiUrl}api/register?&Nome=${nome}&IsActive=${true}&Email=${email}&Login=${login}&Senha=${senha}`, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Access-Control-Allow-Origin': '*'
+                            },
+                            body: JSON.stringify(data)
+                        });
+                        console.log(JSON.stringify(data));
+    
+                        if (response.ok) {
+                            alert('Cadastrado com sucesso!\nPor favor, faça o login.');
+                            location.href = '../index.html';
+                        } else {
+                            console.error('Erro ao cadastrar:', response.status);
+                        }
+                    } catch (error) {
+                        console.error('Erro ao fazer a requisição:', error);
                     }
                 }
-
+    
                 btnCad.addEventListener("click", () => {
                     let nome = document.querySelector('#nome').value;
                     let email = document.querySelector('#email').value;
@@ -69,53 +88,36 @@ if (document.body.classList.contains("indexpage")) {
             .catch((err) => {
                 console.warn("Algo deu errado!", err);
             });
-    }
+    }    
 
-    function telaLogin() {
-        fetch("../htmlparts/login.html")
-            .then((response) => {
-                return response.text();
-            })
-            .then((html) => {
-                content.innerHTML = html;
+    async function login(log, senha) {
+        const options = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
+            },
+            body: JSON.stringify({})
+        };
 
-                let btnVoltar = document.getElementById("btn-voltar");
-                let btnEntrar = document.querySelector("#btn-entrar");
-                let linkEsqueceu = document.querySelector("#link-esqueceu");
-                let inpLogin = document.querySelector('#login');
-                let inpSenha = document.querySelector('#senha');
-                let msgErr = document.querySelector('.msg-err');
-
-                btnVoltar.addEventListener("click", () => {
-                    index();
-                });
-
-                async function login(log, senha) {
-                    await fetch(`${apiUrl}api/login?Login=${log}&Senha=${senha}`)
-                        .then((res) => {
-                            return res.text();
-                        }).then((data) => {
-                            if (data.length > 2) {
-                                localStorage.setItem('jogador', data);
-                                location.href = './inicial.html';
-                            } else {
-                                msgErr.textContent = 'Usuário ou Senha incorretos';
-                            }
-                        });
+        await fetch(`${apiUrl}api/login?Login=${log}&Senha=${senha}`, options)
+            .then((res) => {
+                return res.json();
+            }).then((data) => {
+                if (data.status === "success") {
+                    localStorage.setItem('jogador', JSON.stringify({
+                        login: log,
+                        id: data.user_id  // Salvando o ID do usuário no localStorage
+                    }));
+                    location.href = './inicial.html';
+                } else {
+                    msgErr.textContent = 'Usuário ou Senha incorretos';
                 }
-
-                btnEntrar.addEventListener("click", () => {
-                    login(inpLogin.value, inpSenha.value);
-                });
-
-                linkEsqueceu.addEventListener("click", () => {
-                    telaEsqueceu();
-                });
-            })
-            .catch((err) => {
-                console.warn("Algo deu errado!", err);
             });
     }
+
+    
+    
 
     function telaEsqueceu() {
         fetch("../htmlparts/esqueceu_senha.html")
@@ -677,6 +679,7 @@ if (document.body.classList.contains("page-jogo")) {
             peca.addEventListener('click', function () {
                 localStorage.setItem("peca", this.getAttribute('data-peca'));
                 construct(escolhaTema, funcoesTema);
+                
             });
         });
 

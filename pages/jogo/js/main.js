@@ -202,4 +202,4 @@ function updateBoard(newMove) {
 }
     
 // Chamar a função checkForNewMove a cada 1 segundo
-setInterval(checkForNewMove, 1000); // 1 segundo
+setInterval(checkForNewMove, 2000); // 1 segundo
