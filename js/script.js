@@ -924,7 +924,7 @@ if (document.body.classList.contains("page-jogo")) {
         });
 
         setTimeout(() => {
-            location.href = "./game.html";
+            location.href = "../pages/jogo/game.html";
         }, 10000);
     }
 
