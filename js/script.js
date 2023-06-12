@@ -911,7 +911,7 @@ if (document.body.classList.contains("page-jogo")) {
     }
 
     async function esperaJogador() {
-        return await fetch("./espera_jogador.html").then((res) => {
+        return await fetch("../pages/jogo/espera_jogador.html").then((res) => {
             return res.text();
         });
     }
