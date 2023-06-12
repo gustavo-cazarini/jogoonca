@@ -1,4 +1,5 @@
 const apiUrl = 'https://adugo-game-backend-01.onrender.com/';
+//const apiUrl = 'http://44.204.47.153:3333/';
 
 if (document.body.classList.contains("indexpage")) {
     const index = () => {
