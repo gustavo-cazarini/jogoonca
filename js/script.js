@@ -117,6 +117,59 @@ if (document.body.classList.contains("indexpage")) {
             });
     }
 
+    function telaLogin() {
+        fetch("../htmlparts/login.html")
+            .then((response) => {
+                return response.text();
+            })
+            .then((html) => {
+                content.innerHTML = html;
+    
+                let btnVoltar = document.getElementById("btn-voltar");
+                let btnEntrar = document.querySelector("#btn-entrar");
+                let linkEsqueceu = document.querySelector("#link-esqueceu");
+                let inpLogin = document.querySelector('#login');
+                let inpSenha = document.querySelector('#senha');
+                let msgErr = document.querySelector('.msg-err');
+    
+                btnVoltar.addEventListener("click", () => {
+                    index();
+                });
+    
+                async function login(log, senha) {
+                    const options = {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({})
+                    };
+    
+                    await fetch(`${apiUrl}api/login?Login=${log}&Senha=${senha}`, options)
+                        .then((res) => {
+                            return res.json();
+                        }).then((data) => {
+                            if (data.status === "success") {
+                                localStorage.setItem('jogador', log);
+                                location.href = './inicial.html';
+                            } else {
+                                msgErr.textContent = 'Usuário ou Senha incorretos';
+                            }
+                        });
+                }
+    
+                btnEntrar.addEventListener("click", () => {
+                    login(inpLogin.value, inpSenha.value);
+                });
+    
+                linkEsqueceu.addEventListener("click", () => {
+                    telaEsqueceu();
+                });
+            })
+            .catch((err) => {
+                console.warn("Algo deu errado!", err);
+            });
+    }
     
     
 
