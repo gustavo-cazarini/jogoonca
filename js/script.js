@@ -1,4 +1,5 @@
 const apiUrl = 'http://localhost:3333/';
+//const apiUrl = 'http://44.204.47.153:3333/';
 
 if (document.body.classList.contains("indexpage")) {
     const index = () => {
