@@ -1,4 +1,5 @@
 const apiUrl = "https://adugo-game-backend-01.onrender.com/";
+const apiRender = "https://api-jdo-h6kx.onrender.com/";
 const apiMatUrl = "http://44.204.47.153:3333/";
 //const apiUrl = 'http://44.204.47.153:3333/';
 
@@ -622,7 +623,7 @@ if (document.body.classList.contains("inicialpage")) {
     }
 
     const perfilData = async (nomeInp, emailInp, loginInp) => {
-        await fetch(`${apiMatUrl}api/user/${localStorage.getItem("idJogador")}`)
+        await fetch(`${apiRender}api/user/${localStorage.getItem("idJogador")}`)
             .then((ret) => {
                 return ret.text();
             })
@@ -660,7 +661,7 @@ if (document.body.classList.contains("inicialpage")) {
 
                 async function atualizar(id, nome, email, login, senha) {
                     await fetch(
-                        `${apiMatUrl}api/user/${id}?Nome=${nome}&Email=${email}&Login=${login}&Senha=${senha}&IsActive=true`,
+                        `${apiRender}api/user/${id}?Nome=${nome}&Email=${email}&Login=${login}&Senha=${senha}&IsActive=true`,
                         { method: "PUT" }
                     )
                         .then((res) => {
