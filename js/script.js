@@ -811,7 +811,7 @@ if (document.body.classList.contains("page-jogo")) {
     }
 
     async function escolhaPeca() {
-        return await fetch("./escolha_peca.html").then((res) => {
+        return await fetch("../pages/jogo/escolha_peca.html").then((res) => {
             return res.text();
         });
     }
@@ -833,7 +833,7 @@ if (document.body.classList.contains("page-jogo")) {
     }
 
     async function escolhaTema() {
-        return await fetch("./escolha_tema.html").then((res) => {
+        return await fetch("../pages/jogo/escolha_tema.html").then((res) => {
             return res.text();
         });
     }
@@ -875,7 +875,7 @@ if (document.body.classList.contains("page-jogo")) {
     }
 
     async function escolhaSkin() {
-        return await fetch("./escolha_skin.html").then((res) => {
+        return await fetch("../pages/jogo/escolha_skin.html").then((res) => {
             return res.text();
         });
     }
@@ -925,7 +925,7 @@ if (document.body.classList.contains("page-jogo")) {
     }
 
     async function esperaJogador() {
-        return await fetch("./espera_jogador.html").then((res) => {
+        return await fetch("../pages/jogo/espera_jogador.html").then((res) => {
             return res.text();
         });
     }
