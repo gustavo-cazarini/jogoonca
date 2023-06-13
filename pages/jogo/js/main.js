@@ -22,6 +22,22 @@ import { cells, selectedPiece } from "./variables.js";
 function onInitGame() {
     cells.forEach((cell) => {
         cell.addEventListener("click", () => {
+
+            // Pega a peça do jogador do localStorage
+            //const playerPiece = localStorage.getItem('peca');
+            //var AuxPiece;
+
+            //if (playerPiece === 'onca') {
+            //    AuxPiece = 'jaguar'
+            //} else {
+            //    AuxPiece = 'cachorro'
+            //}
+
+            //if (!cell.classList.contains(`piece-${AuxPiece}`)) {
+             //   alert('Você não pode mover esta peça!');
+            //    return; // Para a execução do código aqui se a peça não for do jogador
+            //}
+
             if (isPiece(cell)) {
                 selectPiece(cell);
                 highlightCells();

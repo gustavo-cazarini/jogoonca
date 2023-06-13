@@ -1,369 +1,373 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Jogo da Onça</title>
-        <link rel="stylesheet" href="./css/style.css" />
-    </head>
 
-    <body>
-        <div class="parent">
-            <div class="grid-time">
-                <div class="tempo">
-                    <img src="./img/icons/timer.png" width="25px" alt="" /><span
-                        >00:00:<span id="tempo">15</span></span
-                    >
-                </div>
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jogo da Onça</title>
+    <link rel="stylesheet" href="./css/style.css" />
+</head>
+
+<body>
+    <div class="parent">
+        <div class="grid-time">
+            <div class="tempo">
+                <img src="./img/icons/timer.png" width="25px" alt="" /><span>00:00:<span id="tempo">15</span></span>
             </div>
+        </div>
 
-            <div class="grid-diversao">
-                <img style="max-width: 100%" id="img-diversao" src="" alt="" />
-            </div>
+        <div class="grid-diversao">
+            <img style="max-width: 100%" id="img-diversao" src="" alt="" />
+        </div>
 
-            <div class="grid-placar">
-                <img class="tema-placar" src="./img/monkey.png" alt="" />
-                <img class="img-placar" src="./img/placar.png" alt="" />
-                <span id="score">0</span>
-            </div>
+        <div class="grid-placar">
+            <img class="tema-placar" src="./img/monkey.png" alt="" />
+            <img class="img-placar" src="./img/placar.png" alt="" />
+            <span id="score">0</span>
+        </div>
 
-            <div class="grid-tabuleiro">
-                <div class="tabuleiro-container">
-                    <div class="tabuleiro">
-                        <div class="row">
-                            <div
-                                class="cell piece-dog"
-                                data-x="0"
-                                data-y="0"
-                            ></div>
-                            <div
-                                class="cell piece-dog"
-                                data-x="1"
-                                data-y="0"
-                            ></div>
-                            <div
-                                class="cell piece-dog"
-                                data-x="2"
-                                data-y="0"
-                            ></div>
-                            <div
-                                class="cell piece-dog"
-                                data-x="3"
-                                data-y="0"
-                            ></div>
-                            <div
-                                class="cell piece-dog"
-                                data-x="4"
-                                data-y="0"
-                            ></div>
-                        </div>
-                        <div class="row">
-                            <div
-                                class="cell piece-dog"
-                                data-x="0"
-                                data-y="1"
-                            ></div>
-                            <div
-                                class="cell piece-dog"
-                                data-x="1"
-                                data-y="1"
-                            ></div>
-                            <div
-                                class="cell piece-dog"
-                                data-x="2"
-                                data-y="1"
-                            ></div>
-                            <div
-                                class="cell piece-dog"
-                                data-x="3"
-                                data-y="1"
-                            ></div>
-                            <div
-                                class="cell piece-dog"
-                                data-x="4"
-                                data-y="1"
-                            ></div>
-                        </div>
-                        <div class="row">
-                            <div
-                                class="cell piece-dog"
-                                data-x="0"
-                                data-y="2"
-                            ></div>
-                            <div
-                                class="cell piece-dog"
-                                data-x="1"
-                                data-y="2"
-                            ></div>
-                            <div
-                                class="cell piece-jaguar"
-                                data-x="2"
-                                data-y="2"
-                            ></div>
-                            <div
-                                class="cell piece-dog"
-                                data-x="3"
-                                data-y="2"
-                            ></div>
-                            <div
-                                class="cell piece-dog"
-                                data-x="4"
-                                data-y="2"
-                            ></div>
-                        </div>
-                        <div class="row">
-                            <div class="cell" data-x="0" data-y="3"></div>
-                            <div class="cell" data-x="1" data-y="3"></div>
-                            <div class="cell" data-x="2" data-y="3"></div>
-                            <div class="cell" data-x="3" data-y="3"></div>
-                            <div class="cell" data-x="4" data-y="3"></div>
-                        </div>
-                        <div class="row">
-                            <div class="cell" data-x="0" data-y="4"></div>
-                            <div class="cell" data-x="1" data-y="4"></div>
-                            <div class="cell" data-x="2" data-y="4"></div>
-                            <div class="cell" data-x="3" data-y="4"></div>
-                            <div class="cell" data-x="4" data-y="4"></div>
-                        </div>
-
-                        <!--Toca-->
-
-                        <div class="row">
-                            <div class="cell1" data-x="0" data-y="5"></div>
-                            <div class="cell" data-x="1" data-y="5"></div>
-                            <div class="cell" data-x="2" data-y="5"></div>
-                            <div class="cell" data-x="3" data-y="5"></div>
-                            <div class="cell1" data-x="4" data-y="5"></div>
-                        </div>
-                        <div class="row">
-                            <div class="cell" data-x="0" data-y="6"></div>
-                            <div class="cell1" data-x="1" data-y="6"></div>
-                            <div class="cell" data-x="2" data-y="6"></div>
-                            <div class="cell1" data-x="3" data-y="6"></div>
-                            <div class="cell" data-x="4" data-y="6"></div>
-                        </div>
+        <div class="grid-tabuleiro">
+            <div class="tabuleiro-container">
+                <div class="tabuleiro">
+                    <div class="row">
+                        <div class="cell piece-dog" data-x="0" data-y="0"></div>
+                        <div class="cell piece-dog" data-x="1" data-y="0"></div>
+                        <div class="cell piece-dog" data-x="2" data-y="0"></div>
+                        <div class="cell piece-dog" data-x="3" data-y="0"></div>
+                        <div class="cell piece-dog" data-x="4" data-y="0"></div>
                     </div>
-                </div>
-            </div>
+                    <div class="row">
+                        <div class="cell piece-dog" data-x="0" data-y="1"></div>
+                        <div class="cell piece-dog" data-x="1" data-y="1"></div>
+                        <div class="cell piece-dog" data-x="2" data-y="1"></div>
+                        <div class="cell piece-dog" data-x="3" data-y="1"></div>
+                        <div class="cell piece-dog" data-x="4" data-y="1"></div>
+                    </div>
+                    <div class="row">
+                        <div class="cell piece-dog" data-x="0" data-y="2"></div>
+                        <div class="cell piece-dog" data-x="1" data-y="2"></div>
+                        <div class="cell piece-jaguar" data-x="2" data-y="2"></div>
+                        <div class="cell piece-dog" data-x="3" data-y="2"></div>
+                        <div class="cell piece-dog" data-x="4" data-y="2"></div>
+                    </div>
+                    <div class="row">
+                        <div class="cell" data-x="0" data-y="3"></div>
+                        <div class="cell" data-x="1" data-y="3"></div>
+                        <div class="cell" data-x="2" data-y="3"></div>
+                        <div class="cell" data-x="3" data-y="3"></div>
+                        <div class="cell" data-x="4" data-y="3"></div>
+                    </div>
+                    <div class="row">
+                        <div class="cell" data-x="0" data-y="4"></div>
+                        <div class="cell" data-x="1" data-y="4"></div>
+                        <div class="cell" data-x="2" data-y="4"></div>
+                        <div class="cell" data-x="3" data-y="4"></div>
+                        <div class="cell" data-x="4" data-y="4"></div>
+                    </div>
 
-            <div class="grid-btn-diversao">
-                <button id="display-gifs">
-                    <img src="./img/icons/smyle.png" alt="Gifs" />
-                </button>
-                <button id="display-audios">
-                    <img src="./img/icons/sound.png" alt="Audios" />
-                </button>
-            </div>
+                    <!--Toca-->
 
-            <div class="grid-btn-grupo">
-                <div class="container">
-                    <button id="mute-Button">
-                        <img src="./img/icons/mute.png" alt="" />
-                    </button>
-                    <button id="btn-sair">
-                        <img src="./img/icons/exit.png" alt="" />
-                    </button>
-                </div>
-            </div>
-
-            <div class="grid-anuncio">
-                <div class="anuncio">
-                    <img id="img-anuncio" src="" alt="" />
+                    <div class="row">
+                        <div class="cell1" data-x="0" data-y="5"></div>
+                        <div class="cell" data-x="1" data-y="5"></div>
+                        <div class="cell" data-x="2" data-y="5"></div>
+                        <div class="cell" data-x="3" data-y="5"></div>
+                        <div class="cell1" data-x="4" data-y="5"></div>
+                    </div>
+                    <div class="row">
+                        <div class="cell" data-x="0" data-y="6"></div>
+                        <div class="cell1" data-x="1" data-y="6"></div>
+                        <div class="cell" data-x="2" data-y="6"></div>
+                        <div class="cell1" data-x="3" data-y="6"></div>
+                        <div class="cell" data-x="4" data-y="6"></div>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <script type="module" src="./js/main.js"></script>
-        <script>
-            /*
+        <div class="grid-btn-diversao">
+            <button id="display-gifs">
+                <img src="./img/icons/smyle.png" alt="Gifs" />
+            </button>
+            <button id="display-audios">
+                <img src="./img/icons/sound.png" alt="Audios" />
+            </button>
+        </div>
+
+        <div class="grid-btn-grupo">
+            <div class="container">
+                <button id="mute-Button">
+                    <img src="./img/icons/mute.png" alt="" />
+                </button>
+                <button id="btn-sair">
+                    <img src="./img/icons/exit.png" alt="" />
+                </button>
+            </div>
+        </div>
+
+        <div class="grid-anuncio">
+            <div class="anuncio">
+                <img id="img-anuncio" src="" alt="" />
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="./js/main.js"></script>
+    <script>
+        /*
+        
+        
+            Audios
+        */
+        function sendAudio(audioId) {
+            let sessionId = localStorage.getItem("session_id");
+            fetch('https://adugo-game-backend-prd.onrender.com/api/send-audio', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Allow-Control-Allow-Origin': '*',
+                },
+                body: JSON.stringify({
+                    session_id: sessionId, // Aqui vai o ID da sessão
+                    audio_id: audioId
+                })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(`envia audio: ${data}`);
+                })
+                .catch(error => {
+                    console.error('Ocorreu um erro ao verificar o novo movimento:', error);
+                    //print o status do erro
+                });
+        }
+        /*
             
             
-                Anúncios
-            */
-            let anunciosArr = [
-                "./anuncios/anuncio1.png",
-                "./anuncios/anuncio2.png",
-                "./anuncios/anuncio3.png",
-            ];
-            let imgAnuncio = document.querySelector("#img-anuncio");
-            function insertAnuncio() {
-                let random = Math.floor(Math.random() * anunciosArr.length);
-                imgAnuncio.src = anunciosArr[random];
-            }
+            Gifs
+        */
+        function sendGif(gifId) {
+            let sessionId = localStorage.getItem("session_id");
+            fetch('https://adugo-game-backend-prd.onrender.com/api/send-gif', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Allow-Control-Allow-Origin': '*',
+                },
+                body: JSON.stringify({
+                    session_id: sessionId, // Aqui vai o ID da sessão
+                    gif_id: gifId
+                })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(`envia audio: ${data}`);
+                })
+                .catch(error => {
+                    console.error('Ocorreu um erro ao verificar o novo movimento:', error);
+                    //print o status do erro
+                });
+        }
 
-            let styles = document.createElement("style");
-            let fundo = localStorage.getItem("fundo");
-            let peca = localStorage.getItem("peca");
-            let skin = localStorage.getItem("skin");
-            let placar = localStorage.getItem("placar");
 
-            const btnGif = document.querySelector("#display-gifs");
-            const btnAudio = document.querySelector("#display-audios");
-            const btnMute = document.querySelector("#mute-Button");
-            const imgDiversao = document.querySelector("#img-diversao");
 
-            document.querySelector(".tema-placar").src = placar;
+        /*
+        
+        
+            Anúncios
+        */
+        let anunciosArr = [
+            "./anuncios/anuncio1.png",
+            "./anuncios/anuncio2.png",
+            "./anuncios/anuncio3.png",
+        ];
+        let imgAnuncio = document.querySelector("#img-anuncio");
+        function insertAnuncio() {
+            let random = Math.floor(Math.random() * anunciosArr.length);
+            imgAnuncio.src = anunciosArr[random];
+        }
 
-            let pecaSkin =
-                peca == "onca"
-                    ? `.piece-jaguar{background-image: url(${skin})}`
-                    : `.piece-dog{background-image: url(${skin})`;
+        let styles = document.createElement("style");
+        let fundo = localStorage.getItem("fundo");
+        let peca = localStorage.getItem("peca");
+        let skin = localStorage.getItem("skin");
+        let placar = localStorage.getItem("placar");
 
-            styles.type = "text/css";
-            styles.innerHTML = `
+        const btnGif = document.querySelector("#display-gifs");
+        const btnAudio = document.querySelector("#display-audios");
+        const btnMute = document.querySelector("#mute-Button");
+        const imgDiversao = document.querySelector("#img-diversao");
+
+        document.querySelector(".tema-placar").src = placar;
+
+        let pecaSkin =
+            peca == "onca"
+                ? `.piece-jaguar{background-image: url(${skin})}`
+                : `.piece-dog{background-image: url(${skin})`;
+
+        styles.type = "text/css";
+        styles.innerHTML = `
                 body {
                     background-image: url(${fundo});
                 }
                 ${pecaSkin}
             `;
-            document.getElementsByTagName("head")[0].appendChild(styles);
+        document.getElementsByTagName("head")[0].appendChild(styles);
 
-            // Todos os gifs, vamos buscar pelo id na 'transferencia' da api
-            let allGifs = [
-                // Super Mario
-                [
-                    { id: 1, url: "./diversao/mario/gifs/gif1.gif" },
-                    { id: 2, url: "./diversao/mario/gifs/gif2.gif" },
-                    { id: 3, url: "./diversao/mario/gifs/gif3.gif" },
-                    { id: 4, url: "./diversao/mario/gifs/gif4.gif" },
-                    { id: 5, url: "./diversao/mario/gifs/gif5.gif" },
-                    { id: 6, url: "./diversao/mario/gifs/gif6.gif" },
-                ],
-                // Toy Story
-                [
-                    { id: 7, url: "./diversao/toystory/gifs/gif1.gif" },
-                    { id: 8, url: "./diversao/toystory/gifs/gif2.gif" },
-                    { id: 9, url: "./diversao/toystory/gifs/gif3.gif" },
-                    { id: 10, url: "./diversao/toystory/gifs/gif4.gif" },
-                    { id: 11, url: "./diversao/toystory/gifs/gif5.gif" },
-                ],
-                // Selvagem
-                [
-                    { id: 12, url: "./diversao/selvagem/gifs/gif1.gif" },
-                    { id: 13, url: "./diversao/selvagem/gifs/gif2.gif" },
-                    { id: 14, url: "./diversao/selvagem/gifs/gif3.gif" },
-                    { id: 15, url: "./diversao/selvagem/gifs/gif4.gif" },
-                    { id: 16, url: "./diversao/selvagem/gifs/gif5.gif" },
-                ],
-                // Chaves
-                [
-                    { id: 17, url: "./diversao/chaves/gifs/gif1.gif" },
-                    { id: 18, url: "./diversao/chaves/gifs/gif2.gif" },
-                    { id: 19, url: "./diversao/chaves/gifs/gif3.gif" },
-                    { id: 20, url: "./diversao/chaves/gifs/gif4.gif" },
-                    { id: 21, url: "./diversao/chaves/gifs/gif5.gif" },
-                ],
-            ];
+        // Todos os gifs, vamos buscar pelo id na 'transferencia' da api
+        let allGifs = [
+            // Super Mario
+            [
+                { id: 1, url: "./diversao/mario/gifs/gif1.gif" },
+                { id: 2, url: "./diversao/mario/gifs/gif2.gif" },
+                { id: 3, url: "./diversao/mario/gifs/gif3.gif" },
+                { id: 4, url: "./diversao/mario/gifs/gif4.gif" },
+                { id: 5, url: "./diversao/mario/gifs/gif5.gif" },
+                { id: 6, url: "./diversao/mario/gifs/gif6.gif" },
+            ],
+            // Toy Story
+            [
+                { id: 7, url: "./diversao/toystory/gifs/gif1.gif" },
+                { id: 8, url: "./diversao/toystory/gifs/gif2.gif" },
+                { id: 9, url: "./diversao/toystory/gifs/gif3.gif" },
+                { id: 10, url: "./diversao/toystory/gifs/gif4.gif" },
+                { id: 11, url: "./diversao/toystory/gifs/gif5.gif" },
+            ],
+            // Selvagem
+            [
+                { id: 12, url: "./diversao/selvagem/gifs/gif1.gif" },
+                { id: 13, url: "./diversao/selvagem/gifs/gif2.gif" },
+                { id: 14, url: "./diversao/selvagem/gifs/gif3.gif" },
+                { id: 15, url: "./diversao/selvagem/gifs/gif4.gif" },
+                { id: 16, url: "./diversao/selvagem/gifs/gif5.gif" },
+            ],
+            // Chaves
+            [
+                { id: 17, url: "./diversao/chaves/gifs/gif1.gif" },
+                { id: 18, url: "./diversao/chaves/gifs/gif2.gif" },
+                { id: 19, url: "./diversao/chaves/gifs/gif3.gif" },
+                { id: 20, url: "./diversao/chaves/gifs/gif4.gif" },
+                { id: 21, url: "./diversao/chaves/gifs/gif5.gif" },
+            ],
+        ];
 
-            // Todos os audios, vamos buscar pelo id na 'transferencia' da api
-            let allAudios = [
-                // Super Mario
-                [
-                    { id: 1, url: "./diversao/mario/audios/marioaudio1.mp3" },
-                    { id: 2, url: "./diversao/mario/audios/marioaudio2.mp3" },
-                    { id: 3, url: "./diversao/mario/audios/marioaudio3.mp3" },
-                    { id: 4, url: "./diversao/mario/audios/marioaudio4.mp3" },
-                    { id: 5, url: "./diversao/mario/audios/marioaudio5.mp3" },
-                ],
-                // Toy Story
-                [
-                    { id: 7, url: "./diversao/toystory/audios/audio1.mp3" },
-                    { id: 8, url: "./diversao/toystory/audios/audio2.mp3" },
-                    { id: 9, url: "./diversao/toystory/audios/audio3.mp3" },
-                    { id: 10, url: "./diversao/toystory/audios/audio4.mp3" },
-                    { id: 11, url: "./diversao/toystory/audios/audio5.mp3" },
-                ],
-                // Selvagem
-                [
-                    { id: 12, url: "./diversao/selvagem/audios/audio1.mp3" },
-                    { id: 13, url: "./diversao/selvagem/audios/audio2.mp3" },
-                    { id: 14, url: "./diversao/selvagem/audios/audio3.mp3" },
-                    { id: 15, url: "./diversao/selvagem/audios/audio4.mp3" },
-                    { id: 16, url: "./diversao/selvagem/audios/audio5.mp3" },
-                ],
-                // Chaves
-                [
-                    { id: 17, url: "./diversao/chaves/audios/audio1.mp3" },
-                    { id: 18, url: "./diversao/chaves/audios/audio2.mp3" },
-                    { id: 19, url: "./diversao/chaves/audios/audio3.mp3" },
-                    { id: 20, url: "./diversao/chaves/audios/audio4.mp3" },
-                    { id: 21, url: "./diversao/chaves/audios/audio5.mp3" },
-                ],
-            ];
+        // Todos os audios, vamos buscar pelo id na 'transferencia' da api
+        let allAudios = [
+            // Super Mario
+            [
+                { id: 1, url: "./diversao/mario/audios/marioaudio1.mp3" },
+                { id: 2, url: "./diversao/mario/audios/marioaudio2.mp3" },
+                { id: 3, url: "./diversao/mario/audios/marioaudio3.mp3" },
+                { id: 4, url: "./diversao/mario/audios/marioaudio4.mp3" },
+                { id: 5, url: "./diversao/mario/audios/marioaudio5.mp3" },
+            ],
+            // Toy Story
+            [
+                { id: 7, url: "./diversao/toystory/audios/audio1.mp3" },
+                { id: 8, url: "./diversao/toystory/audios/audio2.mp3" },
+                { id: 9, url: "./diversao/toystory/audios/audio3.mp3" },
+                { id: 10, url: "./diversao/toystory/audios/audio4.mp3" },
+                { id: 11, url: "./diversao/toystory/audios/audio5.mp3" },
+            ],
+            // Selvagem
+            [
+                { id: 12, url: "./diversao/selvagem/audios/audio1.mp3" },
+                { id: 13, url: "./diversao/selvagem/audios/audio2.mp3" },
+                { id: 14, url: "./diversao/selvagem/audios/audio3.mp3" },
+                { id: 15, url: "./diversao/selvagem/audios/audio4.mp3" },
+                { id: 16, url: "./diversao/selvagem/audios/audio5.mp3" },
+            ],
+            // Chaves
+            [
+                { id: 17, url: "./diversao/chaves/audios/audio1.mp3" },
+                { id: 18, url: "./diversao/chaves/audios/audio2.mp3" },
+                { id: 19, url: "./diversao/chaves/audios/audio3.mp3" },
+                { id: 20, url: "./diversao/chaves/audios/audio4.mp3" },
+                { id: 21, url: "./diversao/chaves/audios/audio5.mp3" },
+            ],
+        ];
 
-            gifsTemaSelecionado = [];
-            audiosTemaSelecionado = [];
+        gifsTemaSelecionado = [];
+        audiosTemaSelecionado = [];
 
-            let musicaFundo = "";
-            if (localStorage.getItem("tema") == 1) {
-                gifsTemaSelecionado = allGifs[0];
-                audiosTemaSelecionado = allAudios[0];
-                musicaFundo = "../../TEMAS/mario/music.mp3";
-            } else if (localStorage.getItem("tema") == 2) {
-                gifsTemaSelecionado = allGifs[1];
-                audiosTemaSelecionado = allAudios[1];
-                musicaFundo = "../../TEMAS/toystory/music.mp3";
-            } else if (localStorage.getItem("tema") == 3) {
-                gifsTemaSelecionado = allGifs[2];
-                audiosTemaSelecionado = allAudios[2];
-                musicaFundo = "../../TEMAS/selva/music.mp3";
+        let musicaFundo = "";
+        if (localStorage.getItem("tema") == 1) {
+            gifsTemaSelecionado = allGifs[0];
+            audiosTemaSelecionado = allAudios[0];
+            musicaFundo = "../../TEMAS/mario/music.mp3";
+        } else if (localStorage.getItem("tema") == 2) {
+            gifsTemaSelecionado = allGifs[1];
+            audiosTemaSelecionado = allAudios[1];
+            musicaFundo = "../../TEMAS/toystory/music.mp3";
+        } else if (localStorage.getItem("tema") == 3) {
+            gifsTemaSelecionado = allGifs[2];
+            audiosTemaSelecionado = allAudios[2];
+            musicaFundo = "../../TEMAS/selva/music.mp3";
+        } else {
+            gifsTemaSelecionado = allGifs[3];
+            audiosTemaSelecionado = allAudios[3];
+            musicaFundo = "../../TEMAS/chaves/music.mp3";
+        }
+
+        let audioFundo = new Audio(musicaFundo);
+        audioFundo.volume = 0.2;
+        audioFundo.loop = true;
+        audioFundo.play();
+
+        function mostraGif() {
+            let random = Math.floor(
+                Math.random() * gifsTemaSelecionado.length
+            );
+            imgDiversao.src = gifsTemaSelecionado[random].url;
+            // Nota: enviar id para a api
+            // gifsTemaSelecionado[random].id
+            sendGif(gifsTemaSelecionado[random].id);
+
+            imgDiversao.style.display = "block";
+            setTimeout(esconderGif, 7000);
+        }
+
+        function esconderGif() {
+            imgDiversao.style.display = "none";
+        }
+
+        btnGif.addEventListener("click", mostraGif);
+
+        function mostraAudio() {
+            let random = Math.floor(
+                Math.random() * audiosTemaSelecionado.length
+            );
+            let efeito = new Audio(audiosTemaSelecionado[random].url);
+            let idAudio = audiosTemaSelecionado[random].id;
+            sendAudio(idAudio);
+            // Passar a id do audio pra api
+            // audiosTemaSelecionado[random].url
+
+            efeito.volume = 0.5;
+            efeito.play();
+        }
+
+        btnAudio.addEventListener("click", mostraAudio);
+        /*
+        
+
+            Mutar musica de fundo
+        */
+        btnMute.addEventListener("click", function () {
+            if (audioFundo.paused) {
+                audioFundo.play();
             } else {
-                gifsTemaSelecionado = allGifs[3];
-                audiosTemaSelecionado = allAudios[3];
-                musicaFundo = "../../TEMAS/chaves/music.mp3";
+                audioFundo.pause();
             }
+        });
 
-            let audioFundo = new Audio(musicaFundo);
-            audioFundo.volume = 0.2;
-            audioFundo.loop = true;
-            audioFundo.play();
+        setInterval(() => {
+            esconderGif();
+        }, 15000);
 
-            function mostraGif() {
-                let random = Math.floor(
-                    Math.random() * gifsTemaSelecionado.length
-                );
-                imgDiversao.src = gifsTemaSelecionado[random].url;
-                // Nota: enviar id para a api
-                // gifsTemaSelecionado[random].id
+        insertAnuncio();
+    </script>
+</body>
 
-                imgDiversao.style.display = "block";
-                setTimeout(esconderGif, 7000);
-            }
-
-            function esconderGif() {
-                imgDiversao.style.display = "none";
-            }
-
-            btnGif.addEventListener("click", mostraGif);
-
-            function mostraAudio() {
-                let random = Math.floor(
-                    Math.random() * audiosTemaSelecionado.length
-                );
-                let efeito = new Audio(audiosTemaSelecionado[random].url);
-                // Passar a id do audio pra api
-                // audiosTemaSelecionado[random].url
-
-                efeito.volume = 0.5;
-                efeito.play();
-            }
-
-            btnAudio.addEventListener("click", mostraAudio);
-            /*
-            
-
-                Mutar musica de fundo
-            */
-            btnMute.addEventListener("click", function () {
-                if (audioFundo.paused) {
-                    audioFundo.play();
-                } else {
-                    audioFundo.pause();
-                }
-            });
-
-            insertAnuncio();
-        </script>
-    </body>
 </html>
