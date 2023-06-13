@@ -158,7 +158,7 @@ document.querySelectorAll(".piece-jaguar").forEach((element) => {
 function checkForNewMove() {
     let sessionId = localStorage.getItem("session_id");
     console.log('Verificando novo movimento...');
-    fetch('https://adugo-game-backend-01.onrender.com/api/check', {
+    fetch('https://adugo-game-backend-prd.onrender.com/api/check', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

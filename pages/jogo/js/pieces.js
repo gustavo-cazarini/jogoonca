@@ -240,7 +240,7 @@ async function sendTabletop(aux) {
         move: cellArray
     }
 
-    const response = await fetch('https://adugo-game-backend-01.onrender.com/api/send-move', {
+    const response = await fetch('https://adugo-game-backend-prd.onrender.com/api/send-move', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
