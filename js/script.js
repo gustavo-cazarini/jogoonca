@@ -1,4 +1,4 @@
-const apiUrl = "http://127.0.0.1:5003/";
+const apiUrl = "https://adugo-game-backend-prd.onrender.com/";
 const apiRender = "https://api-jdo-h6kx.onrender.com/";
 const apiMatUrl = "http://44.204.47.153:3333/";
 //https://adugo-game-backend-01.onrender.com/
@@ -724,18 +724,43 @@ if (document.body.classList.contains("inicialpage")) {
             })
             .then((html) => {
                 content.innerHTML = html;
-
+    
                 let btnVoltar = document.querySelector("#voltar");
-
+    
                 btnVoltar.addEventListener("click", () => {
                     inicial();
+                });
+    
+                // Obter o ID do jogador do localStorage
+                var jogadorId = localStorage.getItem("idJogador");
+    
+                // Fazer a requisição ao backend
+                fetch('/api/vitorias', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Access-Control-Allow-Origin': '*',
+                        'Allow-Control-Allow-Origin': '*'
+                    },
+                    body: JSON.stringify({
+                        jogador_id: jogadorId
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    // Atualizar o número de vitórias no elemento do HTML
+                    var numeroVitorias = data.numero_vitorias;
+                    document.getElementById('numero-vitorias').textContent = numeroVitorias;
+                })
+                .catch(error => {
+                    console.error('Erro na requisição:', error);
                 });
             })
             .catch((err) => {
                 console.warn("Algo deu errado!", err);
             });
     }
-
+    
     inicial();
 }
 /*
@@ -976,6 +1001,9 @@ if (document.body.classList.contains("page-jogo")) {
                                 clearInterval(intervalId);
                                 console.log("Game created!", "Session ID:", data.session_id);
                                 localStorage.setItem("session_id", data.session_id);
+                
+                                localStorage.setItem("partida-jogador1", data.id_usuario1);
+                                localStorage.setItem("partida-jogador2", data.id_usuario2);
 
                                 location.href = "../pages/jogo/game.html";
                             } else {

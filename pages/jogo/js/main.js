@@ -122,9 +122,10 @@ window.addEventListener("load", function () {
     }, 3000); // Este tempo deve ser a soma do tempo de espera antes da animação iniciar e a duração da animação
 });
 
-setInterval(function () {
+window.checkGameOverIntervalId = setInterval(function () {
     checkGameOver();
 }, 1000);
+
 
 var audio = new Audio("music.mp3");
 audio.volume = 0.3;
@@ -158,7 +159,8 @@ document.querySelectorAll(".piece-jaguar").forEach((element) => {
 function checkForNewMove() {
     let sessionId = localStorage.getItem("session_id");
     console.log('Verificando novo movimento...');
-    fetch('https://adugo-game-backend-prd.onrender.com/api/check', {
+    //https://adugo-game-backend-prd.onrender.com/api/check
+    fetch('http://127.0.0.1:5003/api/check', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

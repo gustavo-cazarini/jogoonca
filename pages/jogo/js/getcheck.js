@@ -1,4 +1,5 @@
 import { cells, pieacesEatenbyJaguar } from "./variables.js";
+let checkGameOverIntervalId = null;
 
 function getCoordinates(cell) {
     const x = parseInt(cell.getAttribute("data-x"));
@@ -16,6 +17,12 @@ function getCell(x, y) {
 }
 
 function checkGameOver() {
+    console.log("checkGameOver");
+    const sessionId = localStorage.getItem("session_id");
+    const jogador1 = localStorage.getItem("partida-jogador1");
+    const jogador2 = localStorage.getItem("partida-jogador2");
+    const jogadorAtual = localStorage.getItem("idJogador");
+
     const jaguarCell = Array.from(cells).find((cell) =>
         cell.classList.contains("piece-jaguar")
     );
@@ -27,9 +34,29 @@ function checkGameOver() {
     );
 
     if (bool || pieacesEatenbyJaguar === 5) {
-        setInterval(() => {
-            alert("Fim de jogo!");
-        }, 50);
+        console.log("Game Over");
+        clearInterval(window.checkGameOverIntervalId);
+        
+        // implementa a requisição para o backend quando os cães ou a onça ganharem
+        fetch("https://adugo-game-backend-prd.onrender.com/api/end_game", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
+            },
+            body: JSON.stringify({ 
+                session_id: sessionId,
+                jogador1: jogador1,
+                jogador2: jogador2,
+                vitoria: jogadorAtual // ou a variável que contém o nome do vencedor
+            })
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log("TESTE AQUI");
+                console.log(data);
+                // tratar a resposta do servidor aqui
+            });
     }
 }
 
