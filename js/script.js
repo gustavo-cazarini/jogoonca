@@ -1,4 +1,4 @@
-const apiUrl = "http://adugo-game-backend-prd.onrender.com/";
+const apiUrl = "https://adugo-game-backend-prd.onrender.com/";
 const apiRender = "https://api-jdo-h6kx.onrender.com/";
 const apiMatUrl = "http://44.204.47.153:3333/";
 //https://adugo-game-backend-01.onrender.com/
