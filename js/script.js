@@ -1,4 +1,4 @@
-const apiUrl = "https://adugo-game-backend-prd.onrender.com/";
+const apiUrl = "http://127.0.0.1:5003/";
 const apiRender = "https://api-jdo-h6kx.onrender.com/";
 const apiMatUrl = "http://44.204.47.153:3333/";
 //https://adugo-game-backend-01.onrender.com/
@@ -811,7 +811,7 @@ if (document.body.classList.contains("page-jogo")) {
     }
 
     async function escolhaPeca() {
-        return await fetch("../pages/jogo/escolha_peca.html").then((res) => {
+        return await fetch("./escolha_peca.html").then((res) => {
             return res.text();
         });
     }
@@ -833,7 +833,7 @@ if (document.body.classList.contains("page-jogo")) {
     }
 
     async function escolhaTema() {
-        return await fetch("../pages/jogo/escolha_tema.html").then((res) => {
+        return await fetch("./escolha_tema.html").then((res) => {
             return res.text();
         });
     }
@@ -875,7 +875,7 @@ if (document.body.classList.contains("page-jogo")) {
     }
 
     async function escolhaSkin() {
-        return await fetch("../pages/jogo/escolha_skin.html").then((res) => {
+        return await fetch("./escolha_skin.html").then((res) => {
             return res.text();
         });
     }
@@ -925,7 +925,7 @@ if (document.body.classList.contains("page-jogo")) {
     }
 
     async function esperaJogador() {
-        return await fetch("../pages/jogo/espera_jogador.html").then((res) => {
+        return await fetch("./espera_jogador.html").then((res) => {
             return res.text();
         });
     }
@@ -977,7 +977,7 @@ if (document.body.classList.contains("page-jogo")) {
                                 console.log("Game created!", "Session ID:", data.session_id);
                                 localStorage.setItem("session_id", data.session_id);
 
-                                location.href = "./game.html";
+                                location.href = "../pages/jogo/game.html";
                             } else {
                                 // Se o servidor retornar false (partida não pode ser criada), o intervalo continuará verificando
                                 console.log("Waiting for other player...");
@@ -996,4 +996,29 @@ if (document.body.classList.contains("page-jogo")) {
     
 
     construct(escolhaPeca, funcoesPeca);
+
+
+
+
 }
+
+function sendGameStatusRequest() {
+    setInterval(() => {
+      fetch('/api/get_game_status', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({}),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
+    }, 1000);
+  }
+  
+  sendGameStatusRequest();
