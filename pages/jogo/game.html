@@ -169,17 +169,29 @@
 
             <div class="grid-anuncio">
                 <div class="anuncio">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Repudiandae velit tempore, officia saepe quo dolorum
-                    repellendus in repellat assumenda necessitatibus culpa,
-                    ullam perferendis asperiores? Amet error saepe provident aut
-                    voluptatibus.
+                    <img id="img-anuncio" src="" alt="" />
                 </div>
             </div>
         </div>
 
         <script type="module" src="./js/main.js"></script>
         <script>
+            /*
+            
+            
+                Anúncios
+            */
+            let anunciosArr = [
+                "./anuncios/anuncio1.png",
+                "./anuncios/anuncio2.png",
+                "./anuncios/anuncio3.png",
+            ];
+            let imgAnuncio = document.querySelector("#img-anuncio");
+            function insertAnuncio() {
+                let random = Math.floor(Math.random() * anunciosArr.length);
+                imgAnuncio.src = anunciosArr[random];
+            }
+
             let styles = document.createElement("style");
             let fundo = localStorage.getItem("fundo");
             let peca = localStorage.getItem("peca");
@@ -350,6 +362,8 @@
                     audioFundo.pause();
                 }
             });
+
+            insertAnuncio();
         </script>
     </body>
 </html>

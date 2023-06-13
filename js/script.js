@@ -1,4 +1,6 @@
 const apiUrl = "https://adugo-game-backend-01.onrender.com/";
+const apiRender = "https://api-jdo-h6kx.onrender.com/";
+const apiMatUrl = "http://44.204.47.153:3333/";
 //https://adugo-game-backend-01.onrender.com/
 //const apiUrl = 'http://44.204.47.153:3333/';
 //http://127.0.0.1:5003
@@ -165,7 +167,11 @@ if (document.body.classList.contains("indexpage")) {
                             return res.json();
                         })
                         .then((data) => {
+                            //alert(JSON.stringify(data));
                             if (data.status === "success") {
+                                // Adicionado para a página de 'atualizar perfil'
+                                localStorage.setItem("idJogador", data.user_id);
+                                // -----
                                 localStorage.setItem("jogador", data.user_id);
                                 location.href = "./inicial.html";
                             } else {
@@ -616,6 +622,19 @@ if (document.body.classList.contains("inicialpage")) {
             });
     }
 
+    const perfilData = async (nomeInp, emailInp, loginInp) => {
+        await fetch(`${apiRender}api/user/${localStorage.getItem("idJogador")}`)
+            .then((ret) => {
+                return ret.text();
+            })
+            .then((data) => {
+                let parsedData = JSON.parse(data);
+                nomeInp.value = parsedData[0].nome;
+                emailInp.value = parsedData[0].email;
+                loginInp.value = parsedData[0].login;
+            });
+    };
+
     function telaPerfil() {
         fetch("../pages/perfil/index.html")
             .then((response) => {
@@ -624,9 +643,7 @@ if (document.body.classList.contains("inicialpage")) {
             .then((html) => {
                 content.innerHTML = html;
 
-                const dadosUsuario = JSON.parse(
-                    localStorage.getItem("jogador")
-                );
+                const dadosUsuario = localStorage.getItem("jogador");
 
                 const form = document.querySelector(".form");
                 const nome = document.querySelector("#nome");
@@ -634,15 +651,17 @@ if (document.body.classList.contains("inicialpage")) {
                 const login = document.querySelector("#login");
                 const senha = document.querySelector("#senha");
 
-                nome.value = dadosUsuario[0].nome;
-                email.value = dadosUsuario[0].email;
-                login.value = dadosUsuario[0].login;
+                // Pega os dados do jogador pelo ID e insere dados nos inputs
+                perfilData(nome, email, login);
 
                 let btnVoltar = document.querySelector("#voltar");
+                btnVoltar.addEventListener("click", function () {
+                    inicial();
+                });
 
                 async function atualizar(id, nome, email, login, senha) {
                     await fetch(
-                        `${apiUrl}api/user/${id}?Nome=${nome}&Email=${email}&Login=${login}&Senha=${senha}&IsActive=true`,
+                        `${apiRender}api/user/${id}?Nome=${nome}&Email=${email}&Login=${login}&Senha=${senha}&IsActive=true`,
                         { method: "PUT" }
                     )
                         .then((res) => {
@@ -652,23 +671,19 @@ if (document.body.classList.contains("inicialpage")) {
                             console.log(data);
                         });
                     alert(
-                        "Atualizado com sucesso!\n\nNota: a atualização será visível a partir do próximo login"
+                        "Atualizado com sucesso!\n\nNota: a atualização terá efeito a partir do próximo login"
                     );
                 }
 
                 form.addEventListener("submit", (e) => {
                     e.preventDefault();
                     atualizar(
-                        dadosUsuario[0].id,
+                        localStorage.getItem("idJogador"),
                         nome.value,
                         email.value,
                         login.value,
                         senha.value
                     );
-                });
-
-                btnVoltar.addEventListener("click", () => {
-                    inicial();
                 });
             })
             .catch((err) => {
@@ -800,7 +815,6 @@ if (document.body.classList.contains("page-jogo")) {
             return res.text();
         });
     }
-    
 
     function funcoesPeca() {
         let btnVoltar = document.querySelector("#btn-voltar");

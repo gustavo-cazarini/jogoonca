@@ -33,7 +33,13 @@ body {
 }
 .grid-anuncio {
     grid-area: 2 / 3 / 5 / 4;
+    overflow-y: auto;
 }
+.grid-anuncio img {
+    max-height: 400px;
+    max-width: 100%;
+}
+
 .grid-btn-diversao {
     grid-area: 5 / 2 / 6 / 3;
     display: flex;
