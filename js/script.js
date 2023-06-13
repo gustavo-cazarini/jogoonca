@@ -1019,6 +1019,5 @@ function sendGameStatusRequest() {
           console.error('Error:', error);
         });
     }, 1000);
-  }
-  
+  } 
   sendGameStatusRequest();
