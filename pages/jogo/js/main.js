@@ -176,7 +176,7 @@ function checkForNewMove() {
     let sessionId = localStorage.getItem("session_id");
     console.log('Verificando novo movimento...');
     //https://adugo-game-backend-prd.onrender.com/api/check
-    fetch('http://127.0.0.1:5003/api/check', {
+    fetch('https://adugo-game-backend-prd.onrender.com/api/check', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
