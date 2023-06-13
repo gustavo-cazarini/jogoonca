@@ -8,8 +8,10 @@ import { cells, positions, selectedPiece } from "./variables.js";
 function highlightCells() {
     highlightOccupiedCells();
     removeHighlight();
-    const [selectedX, selectedY] = getCoordinates(selectedPiece);
-    highlightAllPossibleDirections(selectedX, selectedY);
+    if (selectedPiece) { 
+        const [selectedX, selectedY] = getCoordinates(selectedPiece);
+        highlightAllPossibleDirections(selectedX, selectedY);
+    }
 }
 
 function removeHighlight() {

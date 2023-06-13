@@ -1,5 +1,8 @@
 const apiUrl = "https://adugo-game-backend-01.onrender.com/";
+//https://adugo-game-backend-01.onrender.com/
 //const apiUrl = 'http://44.204.47.153:3333/';
+//http://127.0.0.1:5003
+
 
 if (document.body.classList.contains("indexpage")) {
     const index = () => {
@@ -116,11 +119,7 @@ if (document.body.classList.contains("indexpage")) {
             .then((data) => {
                 if (data.status === "success") {
                     localStorage.setItem(
-                        "jogador",
-                        JSON.stringify({
-                            login: log,
-                            id: data.user_id, // Salvando o ID do usuário no localStorage
-                        })
+                        "jogador", data.user_id
                     );
                     location.href = "./inicial.html";
                 } else {
@@ -152,6 +151,7 @@ if (document.body.classList.contains("indexpage")) {
                     const options = {
                         method: "POST",
                         headers: {
+                            "Access-Control-Allow-Origin": "*",
                             "Content-Type": "application/json",
                         },
                         body: JSON.stringify({}),
@@ -166,7 +166,7 @@ if (document.body.classList.contains("indexpage")) {
                         })
                         .then((data) => {
                             if (data.status === "success") {
-                                localStorage.setItem("jogador", log);
+                                localStorage.setItem("jogador", data.user_id);
                                 location.href = "./inicial.html";
                             } else {
                                 msgErr.textContent =
@@ -918,15 +918,68 @@ if (document.body.classList.contains("page-jogo")) {
 
     function funcoesEspera() {
         let btnVoltar = document.querySelector("#btn-voltar");
-
+    
         btnVoltar.addEventListener("click", () => {
             construct(escolhaSkin, funcoesSkin);
         });
+    
+        let jogador = localStorage.getItem("jogador");
+        let tema = localStorage.getItem("tema");
+        let peca = localStorage.getItem("peca");
+    
+        console.log(jogador);
+        console.log(tema);
+        console.log(peca);
 
-        setTimeout(() => {
-            location.href = "../pages/jogo/game.html";
-        }, 10000);
+        // Crie um POST para o servidor com idUsuario, skin e peca
+        fetch(`${apiUrl}api/queue`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ id_usuario: jogador, tema: tema, peca: peca })
+        }).then(res => res.json())
+          .then(data => {
+            // Se o servidor retornar true (jogador adicionado à fila com sucesso), verifique se a partida pode ser criada
+            if (data.status === "success") {
+                let intervalId = setInterval(checkGameStatus, 5000);
+                
+                function checkGameStatus() {
+                    let userId = localStorage.getItem('jogador');
+                
+                    fetch(`${apiUrl}api/check_game_status`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Access-Control-Allow-Origin': '*'
+                        },
+                        body: JSON.stringify({ id_usuario: userId })
+                    })
+                        .then(res => res.json())
+                        .then(data => {
+                            // Se o servidor retornar o ID da partida (partida pode ser criada), limpe o intervalo e redirecione para a página do jogo
+                            if (data.status === "success") {
+                                clearInterval(intervalId);
+                                console.log("Game created!", "Session ID:", data.session_id);
+                                localStorage.setItem("session_id", data.session_id);
+
+                                location.href = "./game.html";
+                            } else {
+                                // Se o servidor retornar false (partida não pode ser criada), o intervalo continuará verificando
+                                console.log("Waiting for other player...");
+                            }
+                        });
+                }
+                
+                
+                }
+            else {
+                // Se o servidor retornar false (jogador não adicionado à fila), você pode manipular esse caso
+                console.error("Failed to add player to queue");
+            }
+        });
     }
+    
 
     construct(escolhaPeca, funcoesPeca);
 }

@@ -223,6 +223,8 @@ function jaguarEat(jaguarPiece,cellAtual) {
 }
 
 async function sendTabletop(aux) {
+    let sessionId = localStorage.getItem("session_id");
+
     // Mapeia o NodeList para um array de objetos
     let cellArray = aux.map((cell, index) => {
         return {
@@ -232,17 +234,19 @@ async function sendTabletop(aux) {
         };
     });
 
-    // Transforma o array em uma string JSON
-    let serialized = JSON.stringify(cellArray);
-    console.log(serialized);
-    
+    // Inclui o sessionId no objeto a ser enviado
+    let requestBody = {
+        session_id: sessionId,
+        move: cellArray
+    }
+
     const response = await fetch('https://adugo-game-backend-01.onrender.com/api/send-move', {
         method: 'POST',
         headers: {
+            'Content-Type': 'application/json',
             'Allow-Control-Allow-Origin': '*',
-          'Content-Type': 'application/json',
         },
-        body: JSON.stringify(cellArray),
+        body: JSON.stringify(requestBody),
       });
     
       if (!response.ok) {
@@ -250,14 +254,8 @@ async function sendTabletop(aux) {
       } else {
         console.log("Move sent successfully");
       }
-    
-      if (!response.ok) {
-        console.error(`HTTP error! status: ${response.status}`);
-      } else {
-        console.log("Move sent successfully");
-      }
-    
 }
+
 
 export {
     isDog,

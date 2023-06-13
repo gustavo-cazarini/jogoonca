@@ -156,12 +156,17 @@ document.querySelectorAll(".piece-jaguar").forEach((element) => {
 
 // Função para verificar novo movimento
 function checkForNewMove() {
+    let sessionId = localStorage.getItem("session_id");
     console.log('Verificando novo movimento...');
     fetch('https://adugo-game-backend-01.onrender.com/api/check', {
+        method: 'POST',
         headers: {
             'Content-Type': 'application/json',
             'Allow-Control-Allow-Origin': '*',
-        }
+        },
+        body: JSON.stringify({ 
+            session_id: sessionId // Aqui vai o ID da sessão
+        })
     })
     .then(response => response.json())
     .then(data => {
