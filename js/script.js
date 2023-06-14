@@ -5,6 +5,11 @@ const apiMatUrl = "http://44.204.47.153:3333/";
 //const apiUrl = 'http://44.204.47.153:3333/';
 //http://127.0.0.1:5003
 
+// URL local
+//const urlTemasSkins = './';
+// URL remota
+urlTemasSkins = '../pages/jogo/';
+
 
 if (document.body.classList.contains("indexpage")) {
     const index = () => {
@@ -170,7 +175,7 @@ if (document.body.classList.contains("indexpage")) {
                             //alert(JSON.stringify(data));
                             if (data.status === "success") {
                                 // Adicionado para a página de 'atualizar perfil'
-                                localStorage.setItem("idJogador", data.user_id);
+                                //localStorage.setItem("idJogador", data.user_id);
                                 // -----
                                 localStorage.setItem("jogador", data.user_id);
                                 location.href = "./inicial.html";
@@ -623,7 +628,7 @@ if (document.body.classList.contains("inicialpage")) {
     }
 
     const perfilData = async (nomeInp, emailInp, loginInp) => {
-        await fetch(`${apiRender}api/user/${localStorage.getItem("idJogador")}`)
+        await fetch(`${apiMatUrl}api/user/${localStorage.getItem("jogador")}`)
             .then((ret) => {
                 return ret.text();
             })
@@ -661,7 +666,7 @@ if (document.body.classList.contains("inicialpage")) {
 
                 async function atualizar(id, nome, email, login, senha) {
                     await fetch(
-                        `${apiRender}api/user/${id}?Nome=${nome}&Email=${email}&Login=${login}&Senha=${senha}&IsActive=true`,
+                        `${apiMatUrl}api/user/${id}?Nome=${nome}&Email=${email}&Login=${login}&Senha=${senha}&IsActive=true`,
                         { method: "PUT" }
                     )
                         .then((res) => {
@@ -724,16 +729,16 @@ if (document.body.classList.contains("inicialpage")) {
             })
             .then((html) => {
                 content.innerHTML = html;
-    
+
                 let btnVoltar = document.querySelector("#voltar");
-    
+
                 btnVoltar.addEventListener("click", () => {
                     inicial();
                 });
-    
+
                 // Obter o ID do jogador do localStorage
                 var jogadorId = localStorage.getItem("idJogador");
-    
+
                 // Fazer a requisição ao backend
                 fetch('/api/vitorias', {
                     method: 'POST',
@@ -746,21 +751,21 @@ if (document.body.classList.contains("inicialpage")) {
                         jogador_id: jogadorId
                     })
                 })
-                .then(response => response.json())
-                .then(data => {
-                    // Atualizar o número de vitórias no elemento do HTML
-                    var numeroVitorias = data.numero_vitorias;
-                    document.getElementById('numero-vitorias').textContent = numeroVitorias;
-                })
-                .catch(error => {
-                    console.error('Erro na requisição:', error);
-                });
+                    .then(response => response.json())
+                    .then(data => {
+                        // Atualizar o número de vitórias no elemento do HTML
+                        var numeroVitorias = data.numero_vitorias;
+                        document.getElementById('numero-vitorias').textContent = numeroVitorias;
+                    })
+                    .catch(error => {
+                        console.error('Erro na requisição:', error);
+                    });
             })
             .catch((err) => {
                 console.warn("Algo deu errado!", err);
             });
     }
-    
+
     inicial();
 }
 /*
@@ -804,6 +809,13 @@ if (document.body.classList.contains("page-jogo")) {
                 fundo: "../../TEMAS/selva/fundo.png",
                 placar: "../../TEMAS/selva/placar.png",
             },
+            {
+                id: 4,
+                nome: "Chaves",
+                img: "../../TEMAS/chaves/circleChaves.png",
+                fundo: "../../TEMAS/chaves/fundo.png",
+                placar: "../../TEMAS/chaves/placar.png",
+            }
         ];
     }
     // temporário... aqui vai ser o 'get' das skins
@@ -832,11 +844,19 @@ if (document.body.classList.contains("page-jogo")) {
                     img_onca: "../../TEMAS/selva/leao.png",
                 },
             ];
+        } else if (idTema == 4) {
+            return [
+                {
+                    id: 1,
+                    img_cachorro: "../../TEMAS/chaves/madruga.png",
+                    img_onca: "../../TEMAS/chaves/clotilde.png",
+                },
+            ];
         }
     }
 
     async function escolhaPeca() {
-        return await fetch("../pages/jogo/escolha_peca.html").then((res) => {
+        return await fetch(`${urlTemasSkins}escolha_peca.html`).then((res) => {
             return res.text();
         });
     }
@@ -858,7 +878,7 @@ if (document.body.classList.contains("page-jogo")) {
     }
 
     async function escolhaTema() {
-        return await fetch("../pages/jogo/escolha_tema.html").then((res) => {
+        return await fetch(`${urlTemasSkins}escolha_tema.html`).then((res) => {
             return res.text();
         });
     }
@@ -900,7 +920,7 @@ if (document.body.classList.contains("page-jogo")) {
     }
 
     async function escolhaSkin() {
-        return await fetch("../pages/jogo/escolha_skin.html").then((res) => {
+        return await fetch(`${urlTemasSkins}escolha_skin.html`).then((res) => {
             return res.text();
         });
     }
@@ -950,22 +970,22 @@ if (document.body.classList.contains("page-jogo")) {
     }
 
     async function esperaJogador() {
-        return await fetch("../pages/jogo/espera_jogador.html").then((res) => {
+        return await fetch(`${urlTemasSkins}espera_jogador.html`).then((res) => {
             return res.text();
         });
     }
 
     function funcoesEspera() {
         let btnVoltar = document.querySelector("#btn-voltar");
-    
+
         btnVoltar.addEventListener("click", () => {
             construct(escolhaSkin, funcoesSkin);
         });
-    
+
         let jogador = localStorage.getItem("jogador");
         let tema = localStorage.getItem("tema");
         let peca = localStorage.getItem("peca");
-    
+
         console.log(jogador);
         console.log(tema);
         console.log(peca);
@@ -978,50 +998,50 @@ if (document.body.classList.contains("page-jogo")) {
             },
             body: JSON.stringify({ id_usuario: jogador, tema: tema, peca: peca })
         }).then(res => res.json())
-          .then(data => {
-            // Se o servidor retornar true (jogador adicionado à fila com sucesso), verifique se a partida pode ser criada
-            if (data.status === "success") {
-                let intervalId = setInterval(checkGameStatus, 5000);
-                
-                function checkGameStatus() {
-                    let userId = localStorage.getItem('jogador');
-                
-                    fetch(`${apiUrl}api/check_game_status`, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'Access-Control-Allow-Origin': '*'
-                        },
-                        body: JSON.stringify({ id_usuario: userId })
-                    })
-                        .then(res => res.json())
-                        .then(data => {
-                            // Se o servidor retornar o ID da partida (partida pode ser criada), limpe o intervalo e redirecione para a página do jogo
-                            if (data.status === "success") {
-                                clearInterval(intervalId);
-                                console.log("Game created!", "Session ID:", data.session_id);
-                                localStorage.setItem("session_id", data.session_id);
-                
-                                localStorage.setItem("partida-jogador1", data.id_usuario1);
-                                localStorage.setItem("partida-jogador2", data.id_usuario2);
+            .then(data => {
+                // Se o servidor retornar true (jogador adicionado à fila com sucesso), verifique se a partida pode ser criada
+                if (data.status === "success") {
+                    let intervalId = setInterval(checkGameStatus, 5000);
 
-                                location.href = "../pages/jogo/game.html";
-                            } else {
-                                // Se o servidor retornar false (partida não pode ser criada), o intervalo continuará verificando
-                                console.log("Waiting for other player...");
-                            }
-                        });
+                    function checkGameStatus() {
+                        let userId = localStorage.getItem('jogador');
+
+                        fetch(`${apiUrl}api/check_game_status`, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Access-Control-Allow-Origin': '*'
+                            },
+                            body: JSON.stringify({ id_usuario: userId })
+                        })
+                            .then(res => res.json())
+                            .then(data => {
+                                // Se o servidor retornar o ID da partida (partida pode ser criada), limpe o intervalo e redirecione para a página do jogo
+                                if (data.status === "success") {
+                                    clearInterval(intervalId);
+                                    console.log("Game created!", "Session ID:", data.session_id);
+                                    localStorage.setItem("session_id", data.session_id);
+
+                                    localStorage.setItem("partida-jogador1", data.id_usuario1);
+                                    localStorage.setItem("partida-jogador2", data.id_usuario2);
+
+                                    location.href = `${urlTemasSkins}game.html`;
+                                } else {
+                                    // Se o servidor retornar false (partida não pode ser criada), o intervalo continuará verificando
+                                    console.log("Waiting for other player...");
+                                }
+                            });
+                    }
+
+
                 }
-                
-                
+                else {
+                    // Se o servidor retornar false (jogador não adicionado à fila), você pode manipular esse caso
+                    console.error("Failed to add player to queue");
                 }
-            else {
-                // Se o servidor retornar false (jogador não adicionado à fila), você pode manipular esse caso
-                console.error("Failed to add player to queue");
-            }
-        });
+            });
     }
-    
+
 
     construct(escolhaPeca, funcoesPeca);
 
@@ -1030,22 +1050,22 @@ if (document.body.classList.contains("page-jogo")) {
 
 }
 
-function sendGameStatusRequest() {
-    setInterval(() => {
-      fetch('/api/get_game_status', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({}),
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          console.log(data);
-        })
-        .catch((error) => {
-          console.error('Error:', error);
-        });
-    }, 1000);
-  } 
-  sendGameStatusRequest();
+// function sendGameStatusRequest() {
+//     setInterval(() => {
+//         fetch(`${apiUrl}api/get_game_status`, {
+//             method: 'POST',
+//             headers: {
+//                 'Content-Type': 'application/json',
+//             },
+//             body: JSON.stringify({}),
+//         })
+//             .then((response) => response.json())
+//             .then((data) => {
+//                 console.log(data);
+//             })
+//             .catch((error) => {
+//                 console.error('Error:', error);
+//             });
+//     }, 1000);
+// }
+// sendGameStatusRequest();

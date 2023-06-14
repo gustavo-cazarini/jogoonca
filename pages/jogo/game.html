@@ -252,6 +252,13 @@
             ],
         ];
 
+        let gifsVitao = [
+            { id: 22, url: './diversao/vitao/gifs/gif1.gif' },
+            { id: 23, url: './diversao/vitao/gifs/gif2.gif' },
+            { id: 24, url: './diversao/vitao/gifs/gif3.gif' },
+            { id: 25, url: './diversao/vitao/gifs/gif4.gif' },
+        ]
+
         // Todos os audios, vamos buscar pelo id na 'transferencia' da api
         let allAudios = [
             // Super Mario
@@ -288,6 +295,17 @@
             ],
         ];
 
+        let audiosVitao = [
+            { id: 22, url: './diversao/vitao/audios/audio1.mp3' },
+            { id: 23, url: './diversao/vitao/audios/audio2.mp3' },
+            { id: 24, url: './diversao/vitao/audios/audio3.mp3' },
+            { id: 25, url: './diversao/vitao/audios/audio4.mp3' },
+            { id: 26, url: './diversao/vitao/audios/audio5.mp3' },
+            { id: 27, url: './diversao/vitao/audios/audio6.mp3' },
+            { id: 28, url: './diversao/vitao/audios/audio7.mp3' },
+            { id: 29, url: './diversao/vitao/audios/audio8.mp3' },
+        ]
+
         gifsTemaSelecionado = [];
         audiosTemaSelecionado = [];
 
@@ -309,6 +327,9 @@
             audiosTemaSelecionado = allAudios[3];
             musicaFundo = "../../TEMAS/chaves/music.mp3";
         }
+
+        gifsTemaSelecionado = gifsTemaSelecionado.concat(gifsVitao);
+        audiosTemaSelecionado = audiosTemaSelecionado.concat(audiosVitao);
 
         let audioFundo = new Audio(musicaFundo);
         audioFundo.volume = 0.2;

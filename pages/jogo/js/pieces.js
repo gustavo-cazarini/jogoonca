@@ -22,6 +22,15 @@ function isPiece(cell) {
 }
 
 function selectPiece(piece) {
+    let peca = localStorage.getItem('peca');
+    if (peca == 'onca' && isJaguar(piece)) {
+        //
+    } else if (peca == 'cachorro' && isDog(piece)) {
+        //
+    } else {
+        alert('peça errada');
+        return;
+    }
     if (isJaguar(piece)) {
         //TO DO: Implementar som novamente, estava dando erro na Cloud e parando a execução
         //jaguarSound.play();
@@ -89,7 +98,7 @@ function onPieceEatenByJaguar() {
     document.getElementById("score").innerText = pieacesEatenbyJaguar;
 }
 
-function jaguarEat(jaguarPiece,cellAtual) {
+function jaguarEat(jaguarPiece, cellAtual) {
     let x = parseInt(jaguarPiece.getAttribute("data-x"));
     let y = parseInt(jaguarPiece.getAttribute("data-y"));
     let cellPosEliminationAfter;
@@ -247,13 +256,13 @@ async function sendTabletop(aux) {
             'Allow-Control-Allow-Origin': '*',
         },
         body: JSON.stringify(requestBody),
-      });
-    
-      if (!response.ok) {
+    });
+
+    if (!response.ok) {
         console.error(`HTTP error! status: ${response.status}`);
-      } else {
+    } else {
         console.log("Move sent successfully");
-      }
+    }
 }
 
 
