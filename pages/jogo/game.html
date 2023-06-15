@@ -7,15 +7,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Jogo da Onça</title>
     <link rel="stylesheet" href="./css/style.css" />
+    <style>
+        .invisivel {
+            color: transparent;
+            cursor: default;
+        }
+    </style>
 </head>
 
 <body>
+    <div class="vitoriaderrota">
+        <div class="container-vitoriaderrota">
+            <h2 id="txtWinOrLose">VITÓRIA</h2>
+            <img id="imgWinOrLose" src="./img/imgVitoria.png" alt="">
+            <p id="ptag">PARABÉNS!<br />VOCÊ GANHOU!</p>
+            <div class="btn-grupo">
+                <button onclick="location.href='../../inicial.html'">MENU</button>
+                <button onclick="location.href='./'">NOVO JOGO</button>
+            </div>
+        </div>
+    </div>
     <div class="parent">
         <div class="grid-time">
-            <div class="tempo">
-                <img src="./img/icons/timer.png" width="25px" alt="" /><span>00:00:<span id="tempo">15</span></span>
-                <span id="vitoria" class="invisivel">..</span>
-            </div>
+            <span id="vitoria" class="invisivel">..</span>
         </div>
 
         <div class="grid-diversao">
@@ -122,6 +136,18 @@
         
             Audios
         */
+        vitoria.addEventListener('mouseover', () => {
+            document.querySelector('.vitoriaderrota').style.display = 'block';
+            document.querySelector('.parent').style.display = 'none';
+        });
+        derrota.addEventListener('mouseover', () => {
+            document.querySelector('#txtWinOrLose').textContent = 'DERROTA';
+            document.querySelector('#imgWinOrLose').src = './img/imgDerrota.png';
+            document.querySelector('#ptag').innerHTML = 'QUE PENA!<br/>VOCÊ PERDEU';
+            document.querySelector('.vitoriaderrota').style.display = 'block';
+            document.querySelector('.parent').style.display = 'none';
+        });
+
         function sendAudio(audioId) {
             let sessionId = localStorage.getItem("session_id");
             fetch('https://adugo-game-backend-prd.onrender.com/api/send-audio', {

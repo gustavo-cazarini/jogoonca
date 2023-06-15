@@ -434,5 +434,5 @@ function checkForNewGif() {
 
 // Chamar a função checkForNewMove a cada 2 segundos
 setInterval(checkForNewMove, 2000); // 2 segundos
-setInterval(checkForNewAudio, 5000); // 2 segundos
-setInterval(checkForNewGif, 5000);
+setInterval(checkForNewAudio, 2000); // 2 segundos
+setInterval(checkForNewGif, 2000);

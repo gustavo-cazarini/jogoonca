@@ -254,3 +254,74 @@ body {
 .occupied {
     background-color: #fc5462;
 }
+
+.vitoriaderrota {
+    display: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+.container-vitoriaderrota {
+    background-color: #ffffffef;
+    width: 50%;
+    height: 80%;
+    border-radius: 2rem;
+    padding: 0 5px;
+    position: absolute;
+    /* centralizar position absolute */
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+.container-vitoriaderrota h2 {
+    text-align: center;
+    font-size: 3rem;
+    color: #006400;
+    margin: 0;
+}
+
+.container-vitoriaderrota img {
+    width: 35%;
+    display: block;
+    margin: 0 auto;
+}
+
+.container-vitoriaderrota p {
+    font-size: 1.5rem;
+    -webkit-text-stroke: 1px #555;
+    color: #57c669;
+    text-align: center;
+}
+
+.container-vitoriaderrota div {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.container-vitoriaderrota button {
+    padding: 10px 15px;
+    border: none;
+    color: #fff;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.container-vitoriaderrota button:first-child {
+    background-color: #d42216;
+}
+.container-vitoriaderrota button:first-child:hover {
+    background-color: #a31a10;
+}
+.container-vitoriaderrota button:nth-child(2) {
+    background-color: #006400;
+}
+.container-vitoriaderrota button:nth-child(2):hover {
+    background-color: #004700;
+}
