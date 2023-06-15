@@ -628,7 +628,7 @@ if (document.body.classList.contains("inicialpage")) {
     }
 
     const perfilData = async (nomeInp, emailInp, loginInp) => {
-        await fetch(`${apiMatUrl}api/user/${localStorage.getItem("jogador")}`)
+        await fetch(`${apiRender}api/user/${localStorage.getItem("jogador")}`)
             .then((ret) => {
                 return ret.text();
             })
@@ -666,7 +666,7 @@ if (document.body.classList.contains("inicialpage")) {
 
                 async function atualizar(id, nome, email, login, senha) {
                     await fetch(
-                        `${apiMatUrl}api/user/${id}?Nome=${nome}&Email=${email}&Login=${login}&Senha=${senha}&IsActive=true`,
+                        `${apiRender}api/user/${id}?Nome=${nome}&Email=${email}&Login=${login}&Senha=${senha}&IsActive=true`,
                         { method: "PUT" }
                     )
                         .then((res) => {
