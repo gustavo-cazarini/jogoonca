@@ -76,36 +76,36 @@ onInitGame();
     Adicionado...
 
 */
-let spanTempo = document.querySelector('#tempo');
-let tempoTurno = 15;
-let turno = 0;
+// //let spanTempo = document.querySelector('#tempo');
+// let tempoTurno = 15;
+// let turno = 0;
 let btnSair = document.querySelector('#btn-sair');
 
-spanTempo.textContent = tempoTurno;
+// //spanTempo.textContent = tempoTurno;
 
-const timerStart = () => {
-    setInterval(() => {
-        if (tempoTurno == 0) {
-            turno += 1;
-            tempoTurno = 15;
-            vezde(turno);
-        }
-        spanTempo.textContent = tempoTurno;
-        tempoTurno -= 1;
-    }, 1000);
-}
+// // const timerStart = () => {
+// //     setInterval(() => {
+// //         if (tempoTurno == 0) {
+// //             turno += 1;
+// //             tempoTurno = 15;
+// //             vezde(turno);
+// //         }
+// //         spanTempo.textContent = tempoTurno;
+// //         tempoTurno -= 1;
+// //     }, 1000);
+// // }
 
-function vezde(val) {
-    let bol = val % 2;
-    if (bol == 0) {
-        console.log('onca');
-    } else {
-        console.log('cachorro');
-    }
-}
+// // function vezde(val) {
+// //     let bol = val % 2;
+// //     if (bol == 0) {
+// //         console.log('onca');
+// //     } else {
+// //         console.log('cachorro');
+// //     }
+// // }
 
-timerStart();
-vezde(turno);
+// timerStart();
+// vezde(turno);
 
 btnSair.addEventListener('click', () => {
     if (confirm('Você tem certeza que deseja sair?')) {
